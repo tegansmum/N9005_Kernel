@@ -32,6 +32,8 @@ on early-init
 
 on init
     exec /sbin/ffu -u
+setenforce 0
+setprop ro.boot.selinux 0
 sysclktz 0
 
 loglevel 3
@@ -208,7 +210,7 @@ on post-fs
 
 on post-fs-data
     # Reload SE Android Policy
-    setprop selinux.reload_policy 1
+    setprop selinux.reload_policy 0
 
     # We chown/chmod /data again so because mount is run as root + defaults
     chown system system /data
