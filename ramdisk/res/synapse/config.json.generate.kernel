@@ -93,6 +93,15 @@ cat << CTAG
         default:`cat /proc/sys/vm/dirty_ratio`,
         action:"generic /proc/sys/vm/dirty_ratio"
     }},
+    { SSeekBar:{
+		title:"VFS Cache Pressure",
+		unit:"%",
+		step:1,
+		min:0,
+		max:150,
+		default:`cat /proc/sys/vm/vfs_cache_pressure`,
+		action:"generic /proc/sys/vm/vfs_cache_pressure"
+    }},
 	{ SPane:{
 		title:"KSM Control",
 		description:"Enabling Kernel SamePage Merging (KSM) will merge some memory = possible slight performance bump, but need cpu-power + battery. Default is OFF."
@@ -101,7 +110,7 @@ cat << CTAG
 		label:"Enable or Disable KSM",
 		default:`cat /sys/kernel/mm/ksm/run`,
 		action:"generic /sys/kernel/mm/ksm/run"
-    }},
+    	}},
     ]
 }
 CTAG
