@@ -1226,8 +1226,3 @@ service Post-init /sbin/custom.sh
     class main
     user root
     oneshot
-
-service governor /sbin/governor
-    class main
-    user root
-    oneshot
