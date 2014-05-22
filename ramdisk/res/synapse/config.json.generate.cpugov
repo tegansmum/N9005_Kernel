@@ -1,0 +1,30 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+	name:CPU GOV,
+		elements:[
+			{ SPane:{
+				title:"CPU Governor Tunables",
+				description:" If you have changed CPU governor, you MUST RESTART SYNAPSE app to view new tunables!"
+			}},
+				{ STreeDescriptor:{
+					path:"/sys/devices/system/cpu/cpufreq",
+					generic: {
+						directory: {
+							STreeDescriptor:{
+								generic: {
+									directory: {},
+									element: {
+										SGeneric: { title:"@BASENAME" }
+									}
+								},
+								exclude: [ "boostpulse", "sampling_rate_min", "cpufreq_limit_requests", "target_loads", "above_hispeed_delay" ]
+							},
+						}
+					},
+					exclude: [ "overall_stats", "vdd_table" ]
+				}},
+		]
+}
+CTAG
