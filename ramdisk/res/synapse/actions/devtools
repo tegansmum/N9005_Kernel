@@ -1,0 +1,8 @@
+BB=/sbin/busybox;
+
+case $1 in
+	reboot)
+		$BB sleep 1;
+		reboot $2;
+	;;
+esac;

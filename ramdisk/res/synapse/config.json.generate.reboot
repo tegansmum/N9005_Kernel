@@ -1,0 +1,24 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+	name:REBOOT,
+		elements:[
+			{ STitleBar:{
+				title:"Reboot"
+			}},
+				{ SButton:{
+					label:"Reboot Device",
+					action:"devtools reboot"
+				}},
+				{ SButton:{
+					label:"Reboot to Recovery",
+					action:"devtools reboot recovery"
+				}},
+				{ SButton:{
+					label:"Reboot to Download Mode",
+					action:"devtools reboot bootloader"
+				}}
+		]
+}
+CTAG
