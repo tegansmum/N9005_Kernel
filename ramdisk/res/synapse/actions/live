@@ -1,0 +1,5 @@
+case $1 in
+  entropy)
+    echo "`cat /proc/sys/kernel/random/entropy_avail`";
+  ;;
+esac;
