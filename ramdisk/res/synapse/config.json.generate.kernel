@@ -111,6 +111,24 @@ cat << CTAG
 		default:`cat /sys/kernel/mm/ksm/run`,
 		action:"generic /sys/kernel/mm/ksm/run"
     	}},
+	{ SSeekBar:{
+		title:"Pages to Scan",
+		unit:" pages",
+		step:10,
+		min:0,
+		max:500,
+		default:`cat /sys/kernel/mm/ksm/pages_to_scan`,
+		action:"generic /sys/kernel/mm/ksm/pages_to_scan"
+		}},
+	{ SSeekBar:{
+		title:"Scan Delay Interval",
+		unit:" ms",
+		step:10,
+		min:0,
+		max:500,
+		default:`cat /sys/kernel/mm/ksm/sleep_millisecs`,
+		action:"generic /sys/kernel/mm/ksm/sleep_millisecs"
+	}},
     ]
 }
 CTAG
