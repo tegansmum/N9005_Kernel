@@ -44,6 +44,25 @@ cat << CTAG
 		label:"Fast Charge Info",
 		action:"show fast"
 	}},
+	{ SPane:{
+		title:"Battery Info"
+	}},
+	{ SLiveLabel:{
+		refresh:2500,
+		action:"show battstatus"
+	}},
+	{ SLiveLabel:{
+		refresh:2500,
+		action:"show battcapa"
+	}},
+	{ SLiveLabel:{
+		refresh:2500,
+		action:"show batttemp"
+	}},
+	{ SLiveLabel:{
+		refresh:9000,
+		action:"show batthealth"
+	}},
     ]
 }
 CTAG
