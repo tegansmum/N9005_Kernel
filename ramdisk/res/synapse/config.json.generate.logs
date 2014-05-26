@@ -1,0 +1,24 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+	name:LOGS,
+		elements:[
+			{ STitleBar:{
+				title:"Log Creation"
+			}},
+				{ SButton:{
+					label:"Save logcat",
+					action:"log logcat"
+				}},
+				{ SButton:{
+					label:"Save dmesg",
+					action:"log dmesg"
+				}},
+				{ SButton:{
+					label:"Save last_kmsg",
+					action:"log kmsg"
+				}},
+		]
+}
+CTAG
