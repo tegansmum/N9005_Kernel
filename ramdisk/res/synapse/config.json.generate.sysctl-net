@@ -1,0 +1,40 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:NET-SYSCTL,
+    elements:[
+      	{ SPane:{
+		title:"core.rmem_max",
+		description:" Maximum amount of memory allowed for automatically tuned receive buffers over TCP. Default is 2097152.",
+      	}},
+	{ SSeekBar:{
+		max:4194304,
+		min:524288,
+		step:524288,
+		default:`cat /proc/sys/net/core/rmem_max`,
+		action:"generic /proc/sys/net/core/rmem_max",
+	}},
+      	{ SPane:{
+		title:"core.wmem_max",
+		description:" Maximum amount of memory allowed for automatically tuned send buffers over TCP. Default is 2097152.",
+      	}},
+	{ SSeekBar:{
+		max:4194304,
+		min:524288,
+		step:524288,
+		default:`cat /proc/sys/net/core/wmem_max`,
+		action:"generic /proc/sys/net/core/wmem_max",
+	}},
+	{ SPane:{
+		title:"ipv4.tcp_tw_recycle",
+		description:" Enable fast recycling TIME-WAIT sockets. Default is Disabled.",
+	}},
+	{ SCheckBox:{
+                label:"Enable or Disable tcp_tw_recycle",
+                default:`cat /proc/sys/net/ipv4/tcp_tw_recycle`,
+                action:"generic /proc/sys/net/ipv4/tcp_tw_recycle"
+        }},
+     ]
+}
+CTAG
