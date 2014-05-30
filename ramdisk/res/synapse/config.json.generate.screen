@@ -11,7 +11,7 @@ cat << CTAG
     elements:[
 	{ SPane:{
 		title:"MDNIE control",
-		description:"Mobile digital natural image engine. Samsungs hardware image post-processor, originally developed as part of a concerted effort to improve television picture quality on non-high-definition-televisions."
+		description:" Mobile digital natural image engine. Samsungs hardware image post-processor, originally developed as part of a concerted effort to improve television picture quality on non-high-definition-televisions."
 	}},
 	{ SCheckBox:{
 		label:"Enable mdnie control",
@@ -24,7 +24,7 @@ cat << CTAG
 	}},
 	{ SPane:{
 		title:"Black level",
-		description:"Note 3 devices have an issue with the AMOLED controller in which, if individial pixels get power-gated for true black, they occur a latency delay when getting powered on again, resulting in a visible smearing effect. This control slightly increase the black level to reduce this problem, it will also eliminate black crush."
+		description:" Note 3 devices have an issue with the AMOLED controller in which, if individial pixels get power-gated for true black, they occur a latency delay when getting powered on again, resulting in a visible smearing effect. This control slightly increase the black level to reduce this problem, it will also eliminate black crush."
 	}},
 	{ SSeekBar:{
 		title:"Increase black level",
@@ -78,7 +78,7 @@ cat << CTAG
 	}},
 	{ SPane:{ 
 		title:"Mode",
-		description:"Note: restart Synapse to see the updated color channel values."
+		description:" Note: restart Synapse to see the updated color channel values."
 	}},
 	{ SOptionList:{
 		title:"Copy mode",

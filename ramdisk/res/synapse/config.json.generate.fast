@@ -14,7 +14,7 @@ cat << CTAG
 	}},
 	{ SPane:{
 		title:"Custom_Levels settings",
-		description:"Only possible when FastCharge Custom_Levels is selected"
+		description:" Only possible when FastCharge Custom_Levels is selected"
 	}},
 	{ SOptionList:{
 		title:"Set AC Custom Charge Level - default is 1800",
@@ -30,7 +30,7 @@ cat << CTAG
 	}},
 	{ SPane:{
 		title:"FAILSAVE - DISABLE AT OWN RISK",
-		description:"If disabled you allow anything up to 2.1A/h to be used as AC / USB custom current"
+		description:" If disabled you allow anything up to 2.1A/h to be used as AC / USB custom current"
 	}},
 	{ SCheckBox:{
 		label:"Un-check to disable - ON YOUR OWN RISK",

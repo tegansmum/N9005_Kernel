@@ -18,8 +18,8 @@ cat << CTAG
 	}},
 	{ SSeekBar:{
 		title:"Set max frequency",
-		description:"Set the maximum frequency the GPU scales up to.",
-		unit:" Mhz",
+		description:" Set the maximum frequency the GPU scales up to.",
+		unit:" MHz",
 		weight:0.000001,
 		default:`cat /sys/class/kgsl/kgsl-3d0/max_gpuclk`,
 		action:"generic /sys/class/kgsl/kgsl-3d0/max_gpuclk",
@@ -27,8 +27,8 @@ cat << CTAG
 	}},
 	{ SSeekBar:{
 		title:"Set min frequency",
-		description:"Set the minimum frequency the GPU scales down to.",
-		unit:" Mhz",
+		description:" Set the minimum frequency the GPU scales down to.",
+		unit:" MHz",
 		weight:0.000001,
 		default:`cat /sys/class/kgsl/kgsl-3d0/devfreq/min_freq`,
 		action:"generic /sys/class/kgsl/kgsl-3d0/devfreq/min_freq",

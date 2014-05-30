@@ -8,7 +8,7 @@ cat << CTAG
 		title:"Brightness"
 	}},
 	{ SSeekBar:{
-		description:"Set the relative intensity of the LED respecting the userspace's request.",
+		description:" Set the relative intensity of the LED respecting the userspace's request.",
 		min:0,
 		max:255,
 		step:1,
@@ -19,7 +19,7 @@ cat << CTAG
 		title:"Set devider for LED (on)"
 	}},
 	{ SSeekBar:{
-		description:"Devider for delay on (1-5 times shorter than default).",
+		description:" Divider for delay on (1-5 times shorter than default).",
 		min:1,
 		max:5,
 		step:1,
@@ -27,10 +27,10 @@ cat << CTAG
 		action:"generic /sys/class/sec/led/led_speed_on"
 	}},
 	{ SPane:{
-		title:"Set devider for LED (off)"
+		title:"Set divider for LED (off)"
 	}},
 	{ SSeekBar:{
-		description:"Devider for delay off (1-5 times shorter than default).",
+		description:" Divider for delay off (1-5 times shorter than default).",
 		min:1,
 		max:5,
 		step:1,
