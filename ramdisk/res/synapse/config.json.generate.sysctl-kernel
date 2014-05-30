@@ -1,0 +1,163 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:KERNEL-SYSCTL,
+    elements:[
+	{ SPane:{
+		title:"msgmax",
+		description:" Defines a system-wide limit specifying the maximum number of bytes in a single message written on a message queque. Default is 8192.",
+	}},
+	{ SSeekBar:{
+		max:524288,
+		min:8192,
+		step:8192,
+		default:`cat /proc/sys/kernel/msgmax`,
+		action:"generic /proc/sys/kernel/msgmax",
+	}},
+	{ SPane:{
+		title:"msgmni",
+		description:" Defines a system-wide limit specifying the minimum number of bytes in a single message written on a message queque. Default is 1007.",
+	}},
+	{ SSeekBar:{
+		default:`cat /proc/sys/kernel/msgmni`,
+		action:"generic /proc/sys/kernel/msgmni",
+		values:[512, 1007, 1024, 2048, 3008, 3072, 4096, 5120, 6144, 7168, 8192,]
+	}},
+	{ SPane:{
+		title:"panic",
+		description:" Set to zero to have the kernel loop on a panic or auto-reboot after this number of seconds. Default is 5.",
+	}},
+	{ SSeekBar:{
+		max:30,
+		min:0,
+		step:1,
+		unit:" s",
+		default:`cat /proc/sys/kernel/panic`,
+		action:"generic /proc/sys/kernel/panic",
+	}},
+	{ SPane:{
+		title:"panic_on_oops",
+		description:" Disable to have the kernel continue operations after a software failure. Default is Enabled.",
+	}},
+	{ SCheckBox:{
+		label:"Enable or Disable panic_on_oops",
+		default:`cat /proc/sys/kernel/panic_on_oops`,
+		action:"generic /proc/sys/kernel/panic_on_oops",
+    	}},
+	{ SPane:{
+		title:"randomize_va_space",
+		description:" Disabling (0) virtual address randomisation may improve GUI responsiveness. Default is 2.",
+	}},
+	{ SSeekBar:{
+		max:2,
+		min:0,
+		step:1,
+		default:`cat /proc/sys/kernel/randomize_va_space`,
+		action:"generic /proc/sys/kernel/randomize_va_space"
+	}},
+	{ SPane:{
+		title:"sched_child_runs_first",
+		description:" Enable to have a child process scheduled next after being launched by its parent. Default is Disabled.",
+	}},
+	{ SCheckBox:{
+                label:"Enable or Disable sched_child_runs_first",
+                default:`cat /proc/sys/kernel/sched_child_runs_first`,
+                action:"generic /proc/sys/kernel/sched_child_runs_first"
+        }},
+	{ SPane:{
+		title:"sched_latency_ns",
+		description:" Targeted preemption latency for CPU-bound tasks. Default is 9999999.",
+	}},
+	{ SSeekBar:{
+		default:`cat /proc/sys/kernel/sched_latency_ns`,
+		action:"generic /proc/sys/kernel/sched_latency_ns",
+		values:[1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 9999999, 10000000, 11000000, 12000000, 13000000, 14000000, 15000000, 16000000, 17000000, 18000000, 19000000, 20000000,]
+	}},
+	{ SPane:{
+		title:"sched_min_granularity_ns",
+		description:" Minimum preemption granularity for CPU-bound tasks. Default is 2250000.",
+	}},
+	{ SSeekBar:{
+		max:3500000,
+		min:1000000,
+		step:250000,
+		default:`cat /proc/sys/kernel/sched_min_granularity_ns`,
+		action:"generic /proc/sys/kernel/sched_min_granularity_ns",
+	}},
+	{ SPane:{
+		title:"sched_rt_period_us",
+		description:" Real-Time group scheduling: The scheduling period that is equivalent to 100% CPU bandwidth. Default is 1000000.",
+      	}},
+	{ SSeekBar:{
+		max:2000000,
+		min:10000,
+		step:10000,
+		unit:" us",
+		default:`cat /proc/sys/kernel/sched_rt_period_us`,
+		action:"generic /proc/sys/kernel/sched_rt_period_us"
+	}},
+	{ SPane:{
+		title:"sched_rt_runtime_us",
+		description:" Real-Time group scheduling: A global limit on how much time realtime scheduling may use.  Even without CONFIG_RT_GROUP_SCHED enabled, this will limit time reserved to realtime processes. With CONFIG_RT_GROUP_SCHED it signifies the total bandwidth available to all realtime groups. Default is 950000.",
+      	}},
+	{ SSeekBar:{
+		max:2000000,
+		min:10000,
+		step:10000,
+		unit:" us",
+		default:`cat /proc/sys/kernel/sched_rt_runtime_us`,
+		action:"generic /proc/sys/kernel/sched_rt_runtime_us"
+	}},
+	{ SPane:{
+		title:"sched_wakeup_granularity_ns",
+		description:" Wake-up granularity for SCHED_OTHER. Default is 1999998.",
+	}},
+	{ SSeekBar:{
+		default:`cat /proc/sys/kernel/sched_wakeup_granularity_ns`,
+		action:"generic /proc/sys/kernel/sched_wakeup_granularity_ns",
+		values:[1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000, 1800000, 1900000, 1999998, 2000000, 2100000, 2200000, 2300000, 2400000, 2500000, 2600000, 2700000, 2800000, 2900000, 3000000,]
+	}},
+	{ SPane:{
+		title:"shmall",
+		description:" Maximum shared memory pages system wide. Default is 2097152.",
+	}},
+	{ SSeekBar:{
+		default:`cat /proc/sys/kernel/shmall`,
+		action:"generic /proc/sys/kernel/shmall",
+		values:[262144, 524288, 786432, 1048576, 1310720, 1572864, 1835008, 2097152,]
+	}},
+	{ SPane:{
+		title:"shmmax",
+		description:" Maximum shared memory pages system wide. Default is 33554432.",
+	}},
+	{ SSeekBar:{
+		max:268435456,
+		min:16777216,
+		step:2097152,
+		default:`cat /proc/sys/kernel/shmmax`,
+		action:"generic /proc/sys/kernel/shmmax",
+	}},
+	{ SPane:{
+		title:"shmmni",
+		description:" Specifies the system-wide maximum number of shared memory segments that can be created. Default is 4096.",
+	}},
+	{ SSeekBar:{
+		max:16384,
+		min:1024,
+		step:1024,
+		default:`cat /proc/sys/kernel/shmmni`,
+		action:"generic /proc/sys/kernel/shmmni",
+	}},
+	{ SPane:{
+		title:"threads-max",
+		description:" Maximum number of threads per process/app. Default is 38833.",
+	}},
+	{ SSeekBar:{
+		default:`cat /proc/sys/kernel/threads-max`,
+		action:"generic /proc/sys/kernel/threads-max",
+		values:[38833, 524288,]
+	}},
+    ]
+}
+CTAG
