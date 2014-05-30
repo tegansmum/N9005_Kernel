@@ -1,0 +1,74 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:FS-SYSCTL,
+    elements:[
+      	{ SPane:{
+		title:"file-max",
+		description:" This specifies the grace period the kernel grants to a process holding a file lease after it has sent a signal to that process notifying it that another process is waiting to open the file. Default is 248482.",
+      	}},
+	{ SSeekBar:{
+		default:`cat /proc/sys/fs/file-max`,
+		action:"generic /proc/sys/fs/file-max",
+		values:[16384, 32768, 49152, 65536, 81920, 98304, 114688, 131072, 147456, 163840, 180224, 196608, 212992, 229376,248482, 262144,]
+	}},
+      	{ SPane:{
+		title:"inotify.max_queued_events",
+		description:" Events in excess of this limit are dropped, but an IN_Q_OVERFLOW event is always generated. Default is 16384.",
+      	}},
+	{ SSeekBar:{
+		max:32768,
+		min:8192,
+		step:1024,
+		default:`cat /proc/sys/fs/inotify/max_queued_events`,
+		action:"generic /proc/sys/fs/inotify/max_queued_events",
+	}},
+      	{ SPane:{
+		title:"inotify.max_user_instances",
+		description:" This specifies an upper limit on the number of inotify instances that can be created per real user ID. Default is 128.",
+      	}},
+	{ SSeekBar:{
+		max:1024,
+		min:64,
+		step:64,
+		default:`cat /proc/sys/fs/inotify/max_user_instances`,
+		action:"generic /proc/sys/fs/inotify/max_user_instances",
+	}},
+      	{ SPane:{
+		title:"inotify.max_user_watches",
+		description:" This specifies an upper limit on the number of watches instances that can be created per real user ID. Default is 8192.",
+      	}},
+	{ SSeekBar:{
+		max:16384,
+		min:1024,
+		step:1024,
+		default:`cat /proc/sys/fs/inotify/max_user_watches`,
+		action:"generic /proc/sys/fs/inotify/max_user_watches",
+	}},
+      	{ SPane:{
+		title:"lease-break-time",
+		description:" This specifies the grace period the kernel grants to a process holding a file lease after it has sent a signal to that process notifying it that another process is waiting to open the file. Default is 45.",
+      	}},
+	{ SSeekBar:{
+		max:100,
+		min:1,
+		step:1,
+		unit:" s",
+		default:`cat /proc/sys/fs/lease-break-time`,
+		action:"generic /proc/sys/fs/lease-break-time",
+	}},
+     	{ SPane:{
+		title:"nr_open",
+		description:" The maximum number of file handles a process can allocate. Default is 1048576.",
+      	}},
+	{ SSeekBar:{
+		max:1048576,
+		min:16384,
+		step:16384,
+		default:`cat /proc/sys/fs/nr_open`,
+		action:"generic /proc/sys/fs/nr_open",
+	}},
+    ]
+}
+CTAG
