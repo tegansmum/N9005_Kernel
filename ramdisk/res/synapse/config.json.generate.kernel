@@ -2,11 +2,11 @@
 
 cat << CTAG
 {
-    name:I/O - VM,
+    name:I/O - MEMORY,
     elements:[
     { SPane:{
 		title:"I/O Schedulers",
-		description:"Set the active I/O elevator algorithm. The scheduler decides how to handle I/O requests and how to handle them."
+		description:" Set the active I/O elevator algorithm. The scheduler decides how to handle I/O requests and how to handle them."
     }},
 	{ SOptionList:{
 		title:"Internal_storage scheduler",
@@ -30,7 +30,7 @@ cat << CTAG
 		values:[`while read values; do busybox printf "%s, \n" $values | busybox tr -d '[]'; done < /sys/block/mmcblk1/queue/scheduler`]
 	}},
 	{ SSeekBar:{
-		title:"ExternalSD  read-ahead",
+		title:"ExternalSD read-ahead",
 		max:2048,
 		min:128,
 		unit:" kB",
@@ -39,72 +39,63 @@ cat << CTAG
 		action:"generic /sys/block/mmcblk1/queue/read_ahead_kb"
 	}},
 	{ SPane:{
-		title:"Battery Tweak"
+		title:"General I/O Tunables",
+		description:" Set the internal storage general tunables"
+	}},
+	{ SCheckBox:{
+		description:" Draw entropy from spinning (rotational) storage. Default is Enabled",
+		label:"Add Random",
+		default:`cat /sys/block/mmcblk0/queue/add_random`,
+		action:"generic /sys/block/mmcblk0/queue/add_random"
+	}},
+	{ SCheckBox:{
+		description:" Maintain I/O statistics for this storage device. Disabling will break I/O monitoring apps. Default is Enabled.",
+		label:"I/O Stats",
+		default:`cat /sys/block/mmcblk0/queue/iostats`,
+		action:"generic /sys/block/mmcblk0/queue/iostats"
+	}},
+	{ SCheckBox:{
+		description:" Treat device as rotational storage. Default is Disabled",
+		label:"Rotational",
+		default:`cat /sys/block/mmcblk0/queue/rotational`,
+		action:"generic /sys/block/mmcblk0/queue/rotational"
+	}},				
+	{ SSeekBar:{
+		title:" No Merges",
+		description:" Types of merges (prioritization) the scheduler queue for this storage device allows. Default is 0:All.",
+		default:`cat /sys/block/mmcblk0/queue/nomerges`,
+		action:"generic /sys/block/mmcblk0/queue/nomerges",
+		values:{
+			`NM='0:"0: All", 1:"1: Simple Only", 2:"2: None",'
+			echo $NM`
+		}
 	}},
 	{ SSeekBar:{
-		title:"Set dirty_expire_centisecs.",
-		description:" Default is 200.",
-		max:2000,
-		min:100,
-		step:100,
-		default:`cat /proc/sys/vm/dirty_expire_centisecs`,
-		action:"generic /proc/sys/vm/dirty_expire_centisecs",
-	}},
-	{ SSeekBar:{
-		title:"Set dirty_writeback_centisecs.",
-		description:" Default is 500.",
-		max:3000,
-		min:100,
-		step:100,
-		default:`cat /proc/sys/vm/dirty_writeback_centisecs`,
-		action:"generic /proc/sys/vm/dirty_writeback_centisecs",
+		title:"RQ Affinity",
+		description:" Try to have scheduler requests complete on the CPU core they were made from. Higher is more aggressive. Some kernels only support 0-1. Default is 1.",
+		default:`cat /sys/block/mmcblk0/queue/rq_affinity`,
+		action:"generic /sys/block/mmcblk0/queue/rq_affinity",
+		values:{
+			`RQA='0:"0: Disabled", 1:"1", 2:"2"'
+			echo $RQA`
+		}
 	}},
 	{ SPane:{
-		title:"Virtual Machine Swappiness",
+		title:"I/O Scheduler Tunables",
+		description:" If you have just changed IO scheduler, you MUST RESTART SYNAPSE app to view new tunables for that scheduler!"
 	}},
-	{ SSeekBar:{
-		title:"Set swappiness.",
-		description:" Default is 60. A low value means the kernel will try to avoid swapping as much as possible where a higher value instead will make the kernel aggressively try to use swap space.",
-		max:100,
-		min:0,
-		step:10,
-		default:`cat /proc/sys/vm/swappiness`,
-		action:"generic /proc/sys/vm/swappiness",
-	}},
-	{ SPane:{
-		title:"Dirty_Ratio Tweak"
-	}},
-    { SSeekBar:{
-        title:"Dirty Background ",
-        description:" Default is 5%. Dirty background memory buffer, more you set, more memory will be used for write buffer for background operations, buffer is released on need to free RAM.",
-        min:0, max:100, 
-		unit:"%", 
-		step:5,
-        default:`cat /proc/sys/vm/dirty_background_ratio`,
-        action:"generic /proc/sys/vm/dirty_background_ratio"
-    }},
-    { SSeekBar:{
-        title:"Dirty real time",
-        description:" Default is 20%. Dirty real time memory buffer, more you set, more memory will be used for write buffer for real time operations, buffer is released on need to free RAM",
-        min:0, 
-		max:100, 
-		unit:"%", 
-		step:5,
-        default:`cat /proc/sys/vm/dirty_ratio`,
-        action:"generic /proc/sys/vm/dirty_ratio"
-    }},
-    { SSeekBar:{
-		title:"VFS Cache Pressure",
-		unit:"%",
-		step:1,
-		min:0,
-		max:150,
-		default:`cat /proc/sys/vm/vfs_cache_pressure`,
-		action:"generic /proc/sys/vm/vfs_cache_pressure"
-    }},
+		{ STreeDescriptor:{
+			path:"/sys/block/mmcblk0/queue/iosched",
+			generic: {
+				directory: {},
+				element: {
+					SGeneric: { title:"@BASENAME" }
+				}
+			},
+		}},
 	{ SPane:{
 		title:"KSM Control",
-		description:"Enabling Kernel SamePage Merging (KSM) will merge some memory = possible slight performance bump, but need cpu-power + battery. Default is OFF."
+		description:" Enabling Kernel SamePage Merging (KSM) will merge some memory = possible slight performance bump, but need cpu-power + battery. Default is OFF."
 	}},
 	{ SCheckBox:{
 		label:"Enable or Disable KSM",
