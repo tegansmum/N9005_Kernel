@@ -6,7 +6,7 @@ cat << CTAG
 		elements:[
 			{ SPane:{
 				title:"CPU Governor",
-				description:"The CPU governor determines how the CPU behaves in response to changes in workload."
+				description:" The CPU governor determines how the CPU behaves in response to changes in workload."
 			}},
 			{ SOptionList:{
 				default:`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor`,
@@ -15,7 +15,7 @@ cat << CTAG
 			}},
 			{ SPane:{
 				title:"CPU Governor Tunables",
-				description:" If you have changed CPU governor, you MUST RESTART SYNAPSE app to view new tunables!"
+				description:" If you have just changed CPU governor, you MUST RESTART SYNAPSE app to view new tunables for that governor!"
 			}},
 				{ STreeDescriptor:{
 					path:"/sys/devices/system/cpu/cpufreq",
@@ -28,7 +28,7 @@ cat << CTAG
 										SGeneric: { title:"@BASENAME" }
 									}
 								},
-								exclude: [ "boostpulse", "sampling_rate_min", "cpufreq_limit_requests", "target_loads", "above_hispeed_delay" ]
+								exclude: [ "boostpulse", "sampling_rate_min", "cpufreq_limit_requests" ]
 							},
 						}
 					},
