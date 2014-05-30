@@ -1,0 +1,148 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:VM-SYSCTL,
+    elements:[
+	{ SPane:{
+		title:"block_dump",
+		description:" Controls block I/O debugging. Default is Disabled.",
+    	}},
+	{ SCheckBox:{
+                label:"Enable or Disable block_dump",
+                default:`cat /proc/sys/vm/block_dump`,
+                action:"generic /proc/sys/vm/block_dump",
+        }},
+	{ SPane:{
+        	title:"dirty_background_ratio",
+        	description:" Dirty background memory buffer, more you set, more memory will be used for write buffer for background operations, buffer is released on need to free RAM. Default is 5.",
+	}},
+    	{ SSeekBar:{
+        	min:0,
+		max:100, 
+		unit:" %", 
+		step:5,
+        	default:`cat /proc/sys/vm/dirty_background_ratio`,
+       		action:"generic /proc/sys/vm/dirty_background_ratio",
+    	}},
+	{ SPane:{
+		title:"dirty_expire_centisecs.",
+		description:" Time after which dirty data is old enough to be eligible for writout by the pdflush daemons. Default is 200.",
+	}},
+	{ SSeekBar:{
+		max:2000,
+		min:100,
+		step:100,
+		default:`cat /proc/sys/vm/dirty_expire_centisecs`,
+		action:"generic /proc/sys/vm/dirty_expire_centisecs",
+	}},
+	{ SPane:{
+        	title:"dirty_ratio",
+        	description:" Dirty real time memory buffer, more you set, more memory will be used for write buffer for real time operations, buffer is released on need to free RAM. Default is 20.",
+	}},
+	{ SSeekBar:{
+        	min:0,
+		max:100,
+		unit:" %",
+		step:5,
+       	 	default:`cat /proc/sys/vm/dirty_ratio`,
+        	action:"generic /proc/sys/vm/dirty_ratio",
+    	}},
+	{ SPane:{
+		title:"dirty_writeback_centisecs.",
+		description:" Time interval between wakeups of the pdflush writeback daemons which write old data out to disk. Default is 500.",
+	}},
+	{ SSeekBar:{
+		max:3000,
+		min:100,
+		step:100,
+		default:`cat /proc/sys/vm/dirty_writeback_centisecs`,
+		action:"generic /proc/sys/vm/dirty_writeback_centisecs",
+	}},
+	{ SPane:{
+        	title:"drop_caches",
+        	description:" Casues the kernel to drop clean caches, dentries, and inodes from memory, causing that memory to become free. Default is 0",
+	}},
+	{ SSeekBar:{
+        	min:0,
+		max:3,
+		step:1,
+       	 	default:`cat /proc/sys/vm/drop_caches`,
+        	action:"generic /proc/sys/vm/drop_caches",
+    	}},
+	{ SPane:{
+        	title:"min_free_kbytes",
+        	description:" Value used to force the Linux VM to keep a minimum number of kilobytes free. Default is 3008.",
+    	}},
+	{ SSeekBar:{
+		unit:" KB",
+       	 	default:`cat /proc/sys/vm/min_free_kbytes`,
+        	action:"generic /proc/sys/vm/min_free_kbytes",
+		values:[1024, 2048, 3008, 3072, 4096, 5120, 6144, 7168, 8192, 9216, 10240, 11264, 12288, 13312, 14336, 15360, 16384,]
+    	}},
+	{ SPane:{
+        	title:"min_free_order_shift",
+        	description:" The higher the value, the more frequent unused objects will be released, freeing memory. Default is 4.",
+    	}},
+	{ SSeekBar:{
+        	min:1,
+		max:5,
+		step:1,
+       	 	default:`cat /proc/sys/vm/min_free_order_shift`,
+        	action:"generic /proc/sys/vm/min_free_order_shift",
+    	}},
+	{ SPane:{
+		title:"oom_kill_allocating_task",
+		description:" Value used to enable or disable killing the OOM-triggering task out-of-memory situations. Default is Disabled.",
+    	}},
+	{ SCheckBox:{
+                label:"Enable or Disable oom_kill_allocating_task",
+                default:`cat /proc/sys/vm/oom_kill_allocating_task`,
+                action:"generic /proc/sys/vm/oom_kill_allocating_task",
+        }},
+	{ SPane:{
+		title:"page-cluster",
+		description:" Number of pages which are written to swap in a single attempt. Default is 3.",
+    	}},
+	{ SSeekBar:{
+		max:8,
+		min:0,
+		step:1,
+		default:`cat /proc/sys/vm/page-cluster`,
+		action:"generic /proc/sys/vm/page-cluster",
+	}},
+	{ SPane:{
+		title:"panic_on_oom",
+		description:" If enabled, the kernel panics when out-of-memory happens. If disabled, the kernel will kill some rogue processes, by calling oom_kill(). Default is Disabled.",
+    	}},
+	{ SCheckBox:{
+                label:"Enable or Disable panic_on_oom",
+                default:`cat /proc/sys/vm/panic_on_oom`,
+                action:"generic /proc/sys/vm/panic_on_oom",
+        }},
+	{ SPane:{
+		title:"swappiness",
+		description:" A low value means the kernel will try to avoid swapping as much as possible where a higher value instead will make the kernel aggressively try to use swap space. Default is 60.",
+    	}},
+	{ SSeekBar:{
+		max:100,
+		min:0,
+		step:10,
+		default:`cat /proc/sys/vm/swappiness`,
+		action:"generic /proc/sys/vm/swappiness",
+	}},
+	{ SPane:{
+		title:"vfs_cache_pressure",
+        	description:" Value used to control the tendency of the kernel to reclaim the memory which is used for caching of directory and inode objects. Default is 100.",
+    	}},
+    	{ SSeekBar:{
+		unit:" %",
+		step:1,
+		min:0,
+		max:150,
+		default:`cat /proc/sys/vm/vfs_cache_pressure`,
+		action:"generic /proc/sys/vm/vfs_cache_pressure"
+    	}},
+    ]
+}
+CTAG
