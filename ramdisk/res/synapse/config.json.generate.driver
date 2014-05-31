@@ -36,12 +36,12 @@ cat << CTAG
 	}},
 	{ SPane:{
 		title:"Powersuspend",
-		description:" Powersuspend driver is a replacement for the early_suspend/late_resume driver."
+		description:" Powersuspend driver is a replacement for the early_suspend/late_resume driver. Hybrid uses autosleep & display panel hook. Default is Hybrid."
 	}},
-	{ SCheckBox:{
-		label:"Enable PowerSuspend",
-		default:`cat /sys/kernel/power_suspend/power_suspend_mode`,
-		action:"generic /sys/kernel/power_suspend/power_suspend_mode"
+	{ SOptionList:{
+		default:`echo $(/res/synapse/actions/suspend powersuspend)`,
+		action:"suspend powersuspend",
+		values:[Autosleep_hook, Userspace_trigger, DisplayPanel_hook, Hybrid_hook,]
 	}},
 	{ SPane:{
 		title:"CPU_Boost"
