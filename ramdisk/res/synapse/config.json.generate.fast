@@ -48,15 +48,15 @@ cat << CTAG
 		title:"Battery Info"
 	}},
 	{ SLiveLabel:{
-		refresh:2500,
+		refresh:1000,
 		action:"show battstatus"
 	}},
 	{ SLiveLabel:{
-		refresh:2500,
+		refresh:1000,
 		action:"show battcapa"
 	}},
 	{ SLiveLabel:{
-		refresh:2500,
+		refresh:1000,
 		action:"show batttemp"
 	}},
 	{ SLiveLabel:{

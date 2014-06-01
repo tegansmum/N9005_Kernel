@@ -5,7 +5,7 @@ cat << CTAG
     name:CPU,
     elements:[
 	{ SLiveLabel:{
-		refresh:2500,
+		refresh:1000,
 		action:"show temp"
 	}},
 	{ SPane:{

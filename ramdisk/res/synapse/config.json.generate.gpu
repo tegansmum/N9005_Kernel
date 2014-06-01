@@ -38,7 +38,7 @@ cat << CTAG
 		title:""
 	}},
 	{ SLiveLabel:{
-		refresh:2500,
+		refresh:1000,
 		action:"show gpu"
 	}},
     ]
