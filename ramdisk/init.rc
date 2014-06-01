@@ -27,7 +27,6 @@ on early-init
     write /sys/module/cpu_boost/parameters/input_boost_freq 0
     write /sys/kernel/dyn_fsync/Dyn_fsync_active 1
     write /sys/module/intelli_plug/parameters/intelli_plug_active 0
-    write /sys/kernel/logger_mode/logger_mode 1
 
     # Set init and its forked children's oom_adj.
     write /proc/1/oom_adj -16
