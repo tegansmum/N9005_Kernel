@@ -60,17 +60,6 @@ cat << CTAG
 		action:"generic /proc/sys/vm/dirty_writeback_centisecs",
 	}},
 	{ SPane:{
-        	title:"drop_caches",
-        	description:" Casues the kernel to drop clean caches, dentries, and inodes from memory, causing that memory to become free. Default is 0",
-	}},
-	{ SSeekBar:{
-        	min:0,
-		max:3,
-		step:1,
-       	 	default:`cat /proc/sys/vm/drop_caches`,
-        	action:"generic /proc/sys/vm/drop_caches",
-    	}},
-	{ SPane:{
         	title:"min_free_kbytes",
         	description:" Value used to force the Linux VM to keep a minimum number of kilobytes free. Default is 3008.",
     	}},
