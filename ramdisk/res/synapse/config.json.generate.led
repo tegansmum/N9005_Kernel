@@ -19,8 +19,8 @@ cat << CTAG
 		title:"Set devider for LED (on)"
 	}},
 	{ SSeekBar:{
-		description:" Divider for delay on (1-5 times shorter than default).",
-		min:1,
+		description:" Divider for delay on. (0 = no on time / 1 = stock).",
+		min:0,
 		max:5,
 		step:1,
 		default:`cat /sys/class/sec/led/led_speed_on`,
@@ -30,8 +30,8 @@ cat << CTAG
 		title:"Set divider for LED (off)"
 	}},
 	{ SSeekBar:{
-		description:" Divider for delay off (1-5 times shorter than default).",
-		min:1,
+		description:" Divider for delay off. (0 = no off time / 1 = stock).",
+		min:0,
 		max:5,
 		step:1,
 		default:`cat /sys/class/sec/led/led_speed_off`,
