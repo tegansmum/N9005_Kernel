@@ -39,8 +39,7 @@ cat << CTAG
 	}},
 	{ SCheckBox:{
 		label:"Enable simple_gpu_algorithm",
-		description:" Open source user configurable simple GPU Control Algorithm used to
-replace the closed sourced Qualcomm TrustZone GPU controller.",
+		description:" Open source user configurable simple GPU Control Algorithm used to replace the closed sourced Qualcomm TrustZone GPU controller.",
 		default:`cat /sys/module/simple_gpu_algorithm/parameters/simple_gpu_activate`,
                 action:"generic /sys/module/simple_gpu_algorithm/parameters/simple_gpu_activate"
         }},

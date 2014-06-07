@@ -62,11 +62,11 @@ cat << CTAG
 	}},				
 	{ SSeekBar:{
 		title:" No Merges",
-		description:" Types of merges (prioritization) the scheduler queue for this storage device allows. Default is 0:All.",
+		description:" Types of merges (prioritization) the scheduler queue for this storage device allows. Default is All.",
 		default:`cat /sys/block/mmcblk0/queue/nomerges`,
 		action:"generic /sys/block/mmcblk0/queue/nomerges",
 		values:{
-			`NM='0:"0: All", 1:"1: Simple Only", 2:"2: None",'
+			`NM='0:"All", 1:"Simple Only", 2:"None",'
 			echo $NM`
 		}
 	}},
@@ -95,7 +95,7 @@ cat << CTAG
 		}},
 	{ SPane:{
 		title:"KSM Control",
-		description:" Enabling Kernel SamePage Merging (KSM) will merge some memory = possible slight performance bump, but need cpu-power + battery. Default is OFF."
+		description:" Enabling Kernel SamePage Merging (KSM) will merge some memory > possible slight performance bump, but need cpu-power + battery. Default is OFF."
 	}},
 	{ SCheckBox:{
 		label:"Enable or Disable KSM",

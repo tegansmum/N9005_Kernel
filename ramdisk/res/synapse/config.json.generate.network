@@ -17,30 +17,30 @@ cat << CTAG
 		title:"Hardening the TCP/IP stack to SYN attack",
 		description:" Values provided by zeppelinrox@XDA Kick-Ass-Kernelizer. Defaults are OFF.",
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.tcp_max_syn_backlog",
 		default:`cat /proc/sys/net/ipv4/tcp_max_syn_backlog`,
 		action:"generic /proc/sys/net/ipv4/tcp_max_syn_backlog",
 		values:{
-			`TCPMSB='512:"512: OFF", 1024:"1024: ON"'
+			`TCPMSB='512:"OFF", 1024:"ON"'
 			echo $TCPMSB`
 		}
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.tcp_syn_retries",
 		default:`cat /proc/sys/net/ipv4/tcp_syn_retries`,
 		action:"generic /proc/sys/net/ipv4/tcp_syn_retries",
 		values:{
-			`TSR='5:"5: OFF", 2:"2: ON"'
+			`TSR='5:"OFF", 2:"ON"'
 			echo $TSR`
 		}
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.tcp_synack_retries",
 		default:`cat /proc/sys/net/ipv4/tcp_synack_retries`,
 		action:"generic /proc/sys/net/ipv4/tcp_synack_retries",
 		values:{
-			`TSKR='5:"5: OFF", 2:"2: ON"'
+			`TSKR='5:"OFF", 2:"ON"'
 			echo $TSKR`
 		}
 	}},
@@ -48,12 +48,12 @@ cat << CTAG
 		title:"Bump up tw_buckets in case we get DoS'd",
 		description:" Values provided by zeppelinrox@XDA Kick-Ass-Kernelizer. Defaults are OFF.",
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.tcp_max_tw_buckets",
 		default:`cat /proc/sys/net/ipv4/tcp_max_tw_buckets`,
 		action:"generic /proc/sys/net/ipv4/tcp_max_tw_buckets",
 		values:{
-			`TCPMTB='65536:"65536: OFF", 16384:"16384: ON"'
+			`TCPMTB='65536:"OFF", 16384:"ON"'
 			echo $TCPMTB`
 		}
 	}},
@@ -61,12 +61,12 @@ cat << CTAG
 		title:"Ignore pings",
 		description:" Values provided by zeppelinrox@XDA Kick-Ass-Kernelizer. Defaults are OFF.",
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.icmp_echo_ignore_all",
 		default:`cat /proc/sys/net/ipv4/icmp_echo_ignore_all`,
 		action:"generic /proc/sys/net/ipv4/icmp_echo_ignore_all",
 		values:{
-			`IEIA='0:"0: OFF", 1:"1: ON"'
+			`IEIA='0:"OFF", 1:"ON"'
 			echo $IEIA`
 		}
 	}},
@@ -74,48 +74,48 @@ cat << CTAG
 		title:"Don't cache connection metrics from previous connection",
 		description:" Values provided by zeppelinrox@XDA Kick-Ass-Kernelizer. Defaults are OFF.",
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.tcp_no_metrics_save",
 		default:`cat /proc/sys/net/ipv4/tcp_no_metrics_save`,
 		action:"generic /proc/sys/net/ipv4/tcp_no_metrics_save",
 		values:{
-			`TCPNMS='0:"0: OFF", 1:"1: ON"'
+			`TCPNMS='0:"OFF", 1:"ON"'
 			echo $TCPNMS`
 		}
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.tcp_fin_timeout",
 		default:`cat /proc/sys/net/ipv4/tcp_fin_timeout`,
 		action:"generic /proc/sys/net/ipv4/tcp_fin_timeout",
 		values:{
-			`TCPFT='60:"60: OFF", 15:"15: ON"'
+			`TCPFT='60:"OFF", 15:"ON"'
 			echo $TCPFT`
 		}
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.tcp_keepalive_intvl",
 		default:`cat /proc/sys/net/ipv4/tcp_keepalive_intvl`,
 		action:"generic /proc/sys/net/ipv4/tcp_keepalive_intvl",
 		values:{
-			`TCPKAI='75:"75: OFF", 30:"30: ON"'
+			`TCPKAI='75:"OFF", 30:"ON"'
 			echo $TCPKAI`
 		}
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.tcp_keepalive_probes",
 		default:`cat /proc/sys/net/ipv4/tcp_keepalive_probes`,
 		action:"generic /proc/sys/net/ipv4/tcp_keepalive_probes",
 		values:{
-			`TCPKAP='9:"9: OFF", 5:"5: ON"'
+			`TCPKAP='9:"OFF", 5:"ON"'
 			echo $TCPKAP`
 		}
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.tcp_keepalive_time",
 		default:`cat /proc/sys/net/ipv4/tcp_keepalive_time`,
 		action:"generic /proc/sys/net/ipv4/tcp_keepalive_time",
 		values:{
-			`TCPKAT='7200:"7200: OFF", 1800:"1800: ON"'
+			`TCPKAT='7200:"OFF", 1800:"ON"'
 			echo $TCPKAT`
 		}
 	}},
@@ -123,21 +123,21 @@ cat << CTAG
 		title:"Don't pass traffic between networks or act as a router",
 		description:" Values provided by zeppelinrox@XDA Kick-Ass-Kernelizer. Defaults are OFF.",
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.conf.all.send_redirects",
 		default:`cat /proc/sys/net/ipv4/conf/all/send_redirects`,
 		action:"generic /proc/sys/net/ipv4/conf/all/send_redirects",
 		values:{
-			`CASR='1:"1: OFF", 0:"0: ON"'
+			`CASR='1:"OFF", 0:"ON"'
 			echo $CASR`
 		}
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.conf.default.send_redirects",
 		default:`cat /proc/sys/net/ipv4/conf/default/send_redirects`,
 		action:"generic /proc/sys/net/ipv4/conf/default/send_redirects",
 		values:{
-			`CDSR='1:"1: OFF", 0:"0: ON"'
+			`CDSR='1:"OFF", 0:"ON"'
 			echo $CDSR`
 		}
 	}},
@@ -145,21 +145,21 @@ cat << CTAG
 		title:"Enable spoofing protection (turn on reverse packet filtering)",
 		description:" Values provided by zeppelinrox@XDA Kick-Ass-Kernelizer. Defaults are OFF.",
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.conf.all.rp_filter",
 		default:`cat /proc/sys/net/ipv4/conf/all/rp_filter`,
 		action:"generic /proc/sys/net/ipv4/conf/all/rp_filter",
 		values:{
-			`CARPF='0:"0: OFF", 1:"1: ON"'
+			`CARPF='0:"OFF", 1:"ON"'
 			echo $CARPF`
 		}
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.conf.default.rp_filter",
 		default:`cat /proc/sys/net/ipv4/conf/default/rp_filter`,
 		action:"generic /proc/sys/net/ipv4/conf/default/rp_filter",
 		values:{
-			`CDRPF='0:"0: OFF", 1:"1: ON"'
+			`CDRPF='0:"OFF", 1:"ON"'
 			echo $CDRPF`
 		}
 	}},
@@ -167,12 +167,12 @@ cat << CTAG
 		title:"Don't accept source routing",
 		description:" Values provided by zeppelinrox@XDA Kick-Ass-Kernelizer. Defaults are OFF.",
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.conf.default.accept_source_route",
 		default:`cat /proc/sys/net/ipv4/conf/default/accept_source_route`,
 		action:"generic /proc/sys/net/ipv4/conf/default/accept_source_route",
 		values:{
-			`CDASR='1:"1: OFF", 0:"0: ON"'
+			`CDASR='1:"OFF", 0:"ON"'
 			echo $CDASR`
 		}
 	}},
@@ -180,39 +180,39 @@ cat << CTAG
 		title:"Don't accept redirects",
 		description:" Values provided by zeppelinrox@XDA Kick-Ass-Kernelizer. Defaults are OFF.",
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.conf.all.accept_redirects",
 		default:`cat /proc/sys/net/ipv4/conf/all/accept_redirects`,
 		action:"generic /proc/sys/net/ipv4/conf/all/accept_redirects",
 		values:{
-			`CAAR='1:"1: OFF", 0:"0: ON"'
+			`CAAR='1:"OFF", 0:"ON"'
 			echo $CAAR`
 		}
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.conf.default.accept_redirects",
 		default:`cat /proc/sys/net/ipv4/conf/default/accept_redirects`,
 		action:"generic /proc/sys/net/ipv4/conf/default/accept_redirects",
 		values:{
-			`CDAR='1:"1: OFF", 0:"0: ON"'
+			`CDAR='1:"OFF", 0:"ON"'
 			echo $CDAR`
 		}
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.conf.all.secure_redirects",
 		default:`cat /proc/sys/net/ipv4/conf/all/secure_redirects`,
 		action:"generic /proc/sys/net/ipv4/conf/all/secure_redirects",
 		values:{
-			`CAASECR='1:"1: OFF", 0:"0: ON"'
+			`CAASECR='1:"OFF", 0:"ON"'
 			echo $CAASECR`
 		}
 	}},
-	{ SSeekBar:{
+	{ SOptionList:{
 		title:"ipv4.conf.default.secure_redirects",
 		default:`cat /proc/sys/net/ipv4/conf/default/secure_redirects`,
 		action:"generic /proc/sys/net/ipv4/conf/default/secure_redirects",
 		values:{
-			`CDASECR='1:"1: OFF", 0:"0: ON"'
+			`CDASECR='1:"OFF", 0:"ON"'
 			echo $CDASECR`
 		}
 	}},
