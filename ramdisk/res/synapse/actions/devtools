@@ -5,4 +5,15 @@ case $1 in
 		$BB sleep 1;
 		reboot $2;
 	;;
+	selinux)	
+		if [[ ! -z $2 ]]; then
+			if [ $2 = "Enforcing" ]; then
+				setenforce 1;
+			elif [ $2 = "Permissive" ]; then
+				setenforce 0;
+			fi;
+		fi;
+
+		$BB echo `getenforce`;
+	;;
 esac;
