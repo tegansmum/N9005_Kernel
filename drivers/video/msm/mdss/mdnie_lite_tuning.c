@@ -94,9 +94,7 @@ static struct mipi_samsung_driver_data *mdnie_msd;
 #if defined(CONFIG_MDNIE_LITE_CONTROL)
 char CONTROL_1[] = {0xEB, 0x01, 0x00, 0x33, 0x01,};
 char CONTROL_2[107];
-int override = 0;
-int copy_mode = 0;
-int gamma_curve = 0;
+int override = 0, copy_mode = 0, gamma_curve = 0;
 #endif
 
 int play_speed_1_5;
@@ -292,7 +290,9 @@ void sending_tuning_cmd(void)
 #ifdef MDNIE_LITE_TUN_DATA_DEBUG
 		print_tun_data();
 #else
-		pr_debug(" send tuning cmd!!\n");
+#if !defined(CONFIG_MDNIE_LITE_CONTROL)
+		DPRINT(" send tuning cmd!!\n");
+#endif
 #endif
 		mdss_dsi_cmds_send(ctrl_pdata, mdni_tune_cmd, ARRAY_SIZE(mdni_tune_cmd),0);
 
@@ -304,7 +304,9 @@ void mDNIe_Set_Mode(void)
 	struct msm_fb_data_type *mfd;
 	mfd = mdnie_msd->mfd;
 
-	pr_debug("mDNIe_Set_Mode start\n");
+#if !defined(CONFIG_MDNIE_LITE_CONTROL)
+	DPRINT("mDNIe_Set_Mode start\n");
+#endif
 
 	if (!mfd) {
 		DPRINT("[ERROR] mfd is null!\n");
@@ -335,11 +337,11 @@ void mDNIe_Set_Mode(void)
 	play_speed_1_5 = 0;
 
 #if defined(CONFIG_MDNIE_LITE_CONTROL)
-    if (override == 1) {
+    if (override) {
 	    DPRINT(" = CONTROL MODE =\n");
 	    INPUT_PAYLOAD1(CONTROL_1);
 	    INPUT_PAYLOAD2(CONTROL_2);
-    } else {
+    } else
 #endif
 	if (mdnie_tun_state.accessibility) {
 #if defined(CONFIG_FB_MSM_MIPI_SAMSUNG_OCTA_CMD_WQHD_PT_PANEL)
@@ -410,19 +412,17 @@ void mDNIe_Set_Mode(void)
 		}
 #endif
 	}
-#if defined(CONFIG_MDNIE_LITE_CONTROL)
-    }
-#endif
 
 	sending_tuning_cmd();
 	free_tun_cmd();
 
-	pr_debug("mDNIe_Set_Mode end , %s(%d), %s(%d), %s(%d), %s(%d)\n",
+#if !defined(CONFIG_MDNIE_LITE_CONTROL)
+	DPRINT("mDNIe_Set_Mode end , %s(%d), %s(%d), %s(%d), %s(%d)\n",
 		scenario_name[mdnie_tun_state.scenario], mdnie_tun_state.scenario, 
 		background_name[mdnie_tun_state.background], mdnie_tun_state.background, 
 		outdoor_name[mdnie_tun_state.outdoor], mdnie_tun_state.outdoor, 
 		accessibility_name[mdnie_tun_state.accessibility], mdnie_tun_state.accessibility);
-
+#endif
 }
 
 void is_play_speed_1_5(int enable)
@@ -475,9 +475,10 @@ static ssize_t mode_store(struct device *dev,
 		DPRINT("already negative mode(%d), do not set background(%d)\n",
 			mdnie_tun_state.accessibility, mdnie_tun_state.background);
 	} else {
-		pr_debug(" %s : (%s) -> (%s)\n",
+#if !defined(CONFIG_MDNIE_LITE_CONTROL)
+		DPRINT(" %s : (%s) -> (%s)\n",
 			__func__, background_name[backup], background_name[mdnie_tun_state.background]);
-
+#endif
 		mDNIe_Set_Mode();
 	}
 
@@ -684,7 +685,9 @@ static DEVICE_ATTR(negative, 0664,
 
 void is_negative_on(void)
 {
-	pr_debug("is negative Mode On = %d\n", mdnie_tun_state.accessibility);
+#if !defined(CONFIG_MDNIE_LITE_CONTROL)
+	DPRINT("is negative Mode On = %d\n", mdnie_tun_state.accessibility);
+#endif
 
 	mDNIe_Set_Mode();
 }
@@ -771,8 +774,10 @@ static ssize_t accessibility_store(struct device *dev,
 	} else
 		pr_info("%s ACCESSIBILITY_MAX", __func__);
 
-	pr_debug(" %s : (%s) -> (%s)\n",
+#if !defined(CONFIG_MDNIE_LITE_CONTROL)
+	DPRINT(" %s : (%s) -> (%s)\n", 
 			__func__, accessibility_name[backup], accessibility_name[mdnie_tun_state.accessibility]);
+#endif
 
 	mDNIe_Set_Mode();
 
@@ -823,7 +828,7 @@ static ssize_t copy_mode_store(struct device *dev, struct device_attribute *attr
 			return -EINVAL;
 		copy_mode = val;
 		update_mdnie_copy_mode();
-		if (override == 1)
+		if (override)
 			mDNIe_Set_Mode();
 	}
     return size;
@@ -845,7 +850,7 @@ static ssize_t gamma_curve_store(struct device *dev, struct device_attribute *at
 			return -EINVAL;
 		gamma_curve = val;
 		update_mdnie_gamma_curve();
-		if (override == 1)
+		if (override)
 			mDNIe_Set_Mode();
 	}
     return size;
@@ -867,7 +872,7 @@ static ssize_t sharpen_store(struct device *dev, struct device_attribute *attr, 
 			return -EINVAL;
 		DPRINT("(sharpen: %d)\n", val);
 		CONTROL_1[4] = val;
-		if (override == 1)
+		if (override)
 			mDNIe_Set_Mode();
 	}
     return size;
@@ -891,7 +896,7 @@ static ssize_t red_store(struct device *dev, struct device_attribute *attr, cons
 		CONTROL_2[19] = red;
 		CONTROL_2[21] = green;
 		CONTROL_2[23] = blue;
-		if (override == 1)
+		if (override)
 			mDNIe_Set_Mode();
 	}
     return size;
@@ -915,7 +920,7 @@ static ssize_t green_store(struct device *dev, struct device_attribute *attr, co
 		CONTROL_2[25] = red;
 		CONTROL_2[27] = green;
 		CONTROL_2[29] = blue;
-		if (override == 1)
+		if (override)
 			mDNIe_Set_Mode();
 	}
     return size;
@@ -939,7 +944,7 @@ static ssize_t blue_store(struct device *dev, struct device_attribute *attr, con
 		CONTROL_2[31] = red;
 		CONTROL_2[33] = green;
 		CONTROL_2[35] = blue;
-		if (override == 1)
+		if (override)
 			mDNIe_Set_Mode();
 	}
     return size;
@@ -963,7 +968,7 @@ static ssize_t cyan_store(struct device *dev, struct device_attribute *attr, con
 		CONTROL_2[18] = red;
 		CONTROL_2[20] = green;
 		CONTROL_2[22] = blue;
-		if (override == 1)
+		if (override)
 			mDNIe_Set_Mode();
 	}
     return size;
@@ -987,7 +992,7 @@ static ssize_t magenta_store(struct device *dev, struct device_attribute *attr, 
 		CONTROL_2[24] = red;
 		CONTROL_2[26] = green;
 		CONTROL_2[28] = blue;
-		if (override == 1)
+		if (override)
 			mDNIe_Set_Mode();
 	}
     return size;
@@ -1011,7 +1016,7 @@ static ssize_t yellow_store(struct device *dev, struct device_attribute *attr, c
 		CONTROL_2[30] = red;
 		CONTROL_2[32] = green;
 		CONTROL_2[34] = blue;
-		if (override == 1)
+		if (override)
 			mDNIe_Set_Mode();
 	}
     return size;
@@ -1035,7 +1040,7 @@ static ssize_t white_store(struct device *dev, struct device_attribute *attr, co
 		CONTROL_2[36] = red;
 		CONTROL_2[38] = green;
 		CONTROL_2[40] = blue;
-		if (override == 1)
+		if (override)
 			mDNIe_Set_Mode();
 	}
     return size;
@@ -1059,7 +1064,7 @@ static ssize_t black_store(struct device *dev, struct device_attribute *attr, co
 		CONTROL_2[37] = red;
 		CONTROL_2[39] = green;
 		CONTROL_2[41] = blue;
-		if (override == 1)
+		if (override)
 			mDNIe_Set_Mode();
 	}
     return size;
