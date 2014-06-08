@@ -20,10 +20,10 @@ cat << CTAG
 		action:"generic /sys/module/intelli_plug/parameters/eco_mode_active",
 	}},
 	{ SCheckBox:{
-		label:"Enable Strict Mode",
-		description:" ECO Dual core mode, CPU will try to run on one core if possible",
-		default:`cat /sys/module/intelli_plug/parameters/strict_mode_active`,
-		action:"generic /sys/module/intelli_plug/parameters/strict_mode_active",
+		label:"Enable Touch Boost Active",
+		description:" Default Enabled.",
+		default:`cat /sys/module/intelli_plug/parameters/touch_boost_active`,
+		action:"generic /sys/module/intelli_plug/parameters/touch_boost_active",
 	}},
 	{ SPane:{
 		title:"Dynamic FSYNC",
