@@ -99,7 +99,7 @@ cat << CTAG
  * 0 = allow changes to scaling min/max.
  * 1 = ignore (don't apply, but don't return an error).
  * 2 = refuse (don't apply, return EINVAL).
-  Default is 0.",
+  Default is 1.",
 		max:2,
 		min:0,
 		default:`cat /sys/kernel/cpufreq_hardlimit/userspace_dvfs_lock`,

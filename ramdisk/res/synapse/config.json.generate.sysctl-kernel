@@ -47,7 +47,7 @@ cat << CTAG
     	}},
 	{ SPane:{
 		title:"randomize_va_space",
-		description:" Disabling (0) virtual address randomisation may improve GUI responsiveness. Default is 2.",
+		description:" Disabling (0) virtual address randomisation may improve GUI responsiveness. Default is 0.",
 	}},
 	{ SSeekBar:{
 		max:2,
