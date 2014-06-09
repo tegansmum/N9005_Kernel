@@ -2,67 +2,116 @@
 
 cat << CTAG
 {
-    name:CPU,
+    name:CPU - HARD LIMIT,
     elements:[
 	{ SLiveLabel:{
 		refresh:1000,
 		action:"show temp"
 	}},
+	{ SLiveLabel:{
+		refresh:1000,
+		action:"show freq"
+	}},	
 	{ SPane:{
-		title:" CPU Maximum Scaling Frequency"
+		title:"MAX CPU Frequency Settings"
 	}},
 	{ SSeekBar:{
-		description:" Set Max CPU frequency and OC to 2803.2 MHz. Be careful, your device may reboot if if cannot handle OC! Default is 2265.6 MHz.",
-		unit:" Mhz",
-		weight:0.001,
-		default:`cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq`,
-		action:"generic /sys/devices/system/cpu/cpu0/cpufreq/scaling_max_freq",
+		title:"MAX Screen ON scaling frequency",		
+		description:" Set the real hard CPU max frequency limit when screen is on. OC to max 2803.2 MHz. Be careful, your device may reboot if if cannot handle OC! Default is 2265.6 MHz.",
+		unit:" kHz",
+		default:`cat /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_on`,
+		action:"generic /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_on",
+		values:[`while read values; do busybox printf "%s, \n" $values; done < /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies`]
+	}},
+	{ SSeekBar:{
+		title:"MAX Screen OFF scaling frequency",		
+		description:" Set the real hard CPU max frequency limit when screen is off. Too low a setting may cause SOD, lag, stuttering or slow wake-up. Default is 2265.6 MHz.",
+		unit:" kHz",
+		default:`cat /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_off`,
+		action:"generic /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_off",
 		values:[`while read values; do busybox printf "%s, \n" $values; done < /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies`]
 	}},
 	{ SPane:{
-		title:"CPU Voltage Control",
-		description:" Too low voltage may cause instability and freezes."
+		title:"MIN CPU Frequency Settings"
 	}},
 	{ SSeekBar:{
-		title:"Set Global Under-Voltage",
-		description:" Minimum undervolting is -30mV. WARNING: Too low voltage may cause instability issues!",
-		max:0,
-		min:-30,
-		unit:" mV",
-		step:5,
-		default:`echo $(/res/synapse/actions/default vread)`,
-		action:"default vwrite"
+		title:"MIN Screen ON scaling frequency",		
+		description:" Set the real hard CPU min frequency limit when screen is on. Default is 300 MHz.",
+		unit:" kHz",
+		default:`cat /sys/kernel/cpufreq_hardlimit/scaling_min_freq_screen_on`,
+		action:"generic /sys/kernel/cpufreq_hardlimit/scaling_min_freq_screen_on",
+		values:[`while read values; do busybox printf "%s, \n" $values; done < /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies`]
 	}},
-	`if [ -f "/sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table" ]; then
-				
-		echo '{ SPane:{
-			title:"CPU Frequency Voltage",
-			description:" Decreasing voltages will lower heat and power consumption of the CPU. Increasing it on overclocked frequencies improves stability. Too low voltages may cause instability and freezes."
-		}},'
-			while read CPUFREQ VOLT UNIT; do
-				echo '{ SSeekBar:{
-					title:"'${CPUFREQ//mhz\:/}' MHz",
-					unit:"' ${UNIT}'",
-					min:650,
-					max:1200,
-					step:5,
-					default:'$VOLT',
-					action:"voltage cpuvolt '${CPUFREQ}'"
-				}},
-				';
-					done < /sys/devices/system/cpu/cpu0/cpufreq/UV_mV_table;
-	fi`
+	{ SSeekBar:{
+		title:"MIN Screen OFF scaling frequency",		
+		description:" Set the real hard CPU min frequency limit when screen is off. Too low a setting may cause SOD, lag, stuttering or slow wake-up. Default is 300 MHz.",
+		unit:" kHz",
+		default:`cat /sys/kernel/cpufreq_hardlimit/scaling_min_freq_screen_off`,
+		action:"generic /sys/kernel/cpufreq_hardlimit/scaling_min_freq_screen_off",
+		values:[`while read values; do busybox printf "%s, \n" $values; done < /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies`]
+	}},
 	{ SPane:{
-		title:"Voltage Info",
+		title:"Wake Up Settings"
+	}},
+	{ SSeekBar:{
+		title:"Wake Up Kick frequency",		
+		description:" Set the wakeup kick frequency - scaling_min for delay time. Default is 300 MHz.",
+		unit:" kHz",
+		default:`cat /sys/kernel/cpufreq_hardlimit/wakeup_kick_freq`,
+		action:"generic /sys/kernel/cpufreq_hardlimit/wakeup_kick_freq",
+		values:[`while read values; do busybox printf "%s, \n" $values; done < /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies`]
+	}},
+	{ SSeekBar:{
+		title:"Wake Up Kick Delay",		
+		description:" Set the wakeup kick duration in ms. Default is 0 ms.",
+		max:10000,
+		min:0,
+		step:250,
+		unit:" ms",
+		default:`cat /sys/kernel/cpufreq_hardlimit/wakeup_kick_delay`,
+		action:"generic /sys/kernel/cpufreq_hardlimit/wakeup_kick_delay",
+	}},
+	{ SPane:{
+		title:"Touch Boost Frequency Settings"
+	}},
+	{ SSeekBar:{
+		title:"Touch Boost High frequency",		
+		description:" Set touchboost high frequency. Default is 1728 MHz.",
+		unit:" kHz",
+		default:`cat /sys/kernel/cpufreq_hardlimit/touchboost_hi_freq`,
+		action:"generic /sys/kernel/cpufreq_hardlimit/touchboost_hi_freq",
+		values:[`while read values; do busybox printf "%s, \n" $values; done < /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies`]
+	}},
+	{ SSeekBar:{
+		title:"Touch Boost Low frequency",		
+		description:" Set touchboost low frequency. Default is 1190.4 MHz.",
+		unit:" kHz",
+		default:`cat /sys/kernel/cpufreq_hardlimit/touchboost_lo_freq`,
+		action:"generic /sys/kernel/cpufreq_hardlimit/touchboost_lo_freq",
+		values:[`while read values; do busybox printf "%s, \n" $values; done < /sys/devices/system/cpu/cpu0/cpufreq/scaling_available_frequencies`]
+	}},
+	{ SPane:{
+		title:"Userspace DVFS Lock"
+	}},
+	{ SSeekBar:{
+		title:"Set userspace_dvfs_lock",		
+		description:" If set to 1 or 2, userspace_dvfs_lock will prevent userspace (ROM as well as any APP, including CPU controlling apps) to change CPU min/max, that is normal and intended !.
+ * 0 = allow changes to scaling min/max.
+ * 1 = ignore (don't apply, but don't return an error).
+ * 2 = refuse (don't apply, return EINVAL).
+  Default is 0.",
+		max:2,
+		min:0,
+		default:`cat /sys/kernel/cpufreq_hardlimit/userspace_dvfs_lock`,
+		action:"generic /sys/kernel/cpufreq_hardlimit/userspace_dvfs_lock",
+	}},
+	{ SPane:{
+		title:""
 	}},
 	{ SButton:{
-		label:"Show Voltage Table",
-		action:"show cpu"
+		label:"Version information",
+		action:"show hard"
 	}},
-	{ SButton:{
-		label:"Show Voltage soc_pvs",
-		action:"show speedbin"
-	}},
-    ]
+	]
 }
 CTAG

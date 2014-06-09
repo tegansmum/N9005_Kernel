@@ -1,4 +1,7 @@
 case $1 in
+hard)
+  echo `cat /sys/kernel/cpufreq_hardlimit/version`
+  ;;
 screen)
   echo `cat /sys/class/mdnie/mdnie/version`
   ;;
