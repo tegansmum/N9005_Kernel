@@ -1,4 +1,7 @@
 case $1 in
+touch)
+  echo `cat /sys/class/misc/touchwake/version`
+  ;;
 hard)
   echo `cat /sys/kernel/cpufreq_hardlimit/version`
   ;;
