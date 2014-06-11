@@ -66,26 +66,6 @@ cat << CTAG
                 action:"generic /proc/sys/kernel/sched_child_runs_first"
         }},
 	{ SPane:{
-		title:"sched_latency_ns",
-		description:" Targeted preemption latency for CPU-bound tasks. Default is 9999999.",
-	}},
-	{ SSeekBar:{
-		default:`cat /proc/sys/kernel/sched_latency_ns`,
-		action:"generic /proc/sys/kernel/sched_latency_ns",
-		values:[1000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 9999999, 10000000, 11000000, 12000000, 13000000, 14000000, 15000000, 16000000, 17000000, 18000000, 19000000, 20000000,]
-	}},
-	{ SPane:{
-		title:"sched_min_granularity_ns",
-		description:" Minimum preemption granularity for CPU-bound tasks. Default is 2250000.",
-	}},
-	{ SSeekBar:{
-		max:3500000,
-		min:1000000,
-		step:250000,
-		default:`cat /proc/sys/kernel/sched_min_granularity_ns`,
-		action:"generic /proc/sys/kernel/sched_min_granularity_ns",
-	}},
-	{ SPane:{
 		title:"sched_rt_period_us",
 		description:" Real-Time group scheduling: The scheduling period that is equivalent to 100% CPU bandwidth. Default is 1000000.",
       	}},
@@ -108,15 +88,6 @@ cat << CTAG
 		unit:" us",
 		default:`cat /proc/sys/kernel/sched_rt_runtime_us`,
 		action:"generic /proc/sys/kernel/sched_rt_runtime_us"
-	}},
-	{ SPane:{
-		title:"sched_wakeup_granularity_ns",
-		description:" Wake-up granularity for SCHED_OTHER. Default is 1999998.",
-	}},
-	{ SSeekBar:{
-		default:`cat /proc/sys/kernel/sched_wakeup_granularity_ns`,
-		action:"generic /proc/sys/kernel/sched_wakeup_granularity_ns",
-		values:[1000000, 1100000, 1200000, 1300000, 1400000, 1500000, 1600000, 1700000, 1800000, 1900000, 1999998, 2000000, 2100000, 2200000, 2300000, 2400000, 2500000, 2600000, 2700000, 2800000, 2900000, 3000000,]
 	}},
 	{ SPane:{
 		title:"shmall",
@@ -148,15 +119,6 @@ cat << CTAG
 		step:1024,
 		default:`cat /proc/sys/kernel/shmmni`,
 		action:"generic /proc/sys/kernel/shmmni",
-	}},
-	{ SPane:{
-		title:"threads-max",
-		description:" Maximum number of threads per process/app. Default is 38833.",
-	}},
-	{ SSeekBar:{
-		default:`cat /proc/sys/kernel/threads-max`,
-		action:"generic /proc/sys/kernel/threads-max",
-		values:[38833, 524288,]
 	}},
     ]
 }

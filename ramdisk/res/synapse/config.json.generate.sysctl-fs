@@ -5,15 +5,6 @@ cat << CTAG
     name:FS-SYSCTL,
     elements:[
       	{ SPane:{
-		title:"file-max",
-		description:" This specifies the grace period the kernel grants to a process holding a file lease after it has sent a signal to that process notifying it that another process is waiting to open the file. Default is 248482.",
-      	}},
-	{ SSeekBar:{
-		default:`cat /proc/sys/fs/file-max`,
-		action:"generic /proc/sys/fs/file-max",
-		values:[16384, 32768, 49152, 65536, 81920, 98304, 114688, 131072, 147456, 163840, 180224, 196608, 212992, 229376,248482, 262144,]
-	}},
-      	{ SPane:{
 		title:"inotify.max_queued_events",
 		description:" Events in excess of this limit are dropped, but an IN_Q_OVERFLOW event is always generated. Default is 16384.",
       	}},

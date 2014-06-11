@@ -92,6 +92,7 @@ cat << CTAG
 					SGeneric: { title:"@BASENAME" }
 				}
 			},
+			exclude: [ "weights" ]
 		}},
 	{ SPane:{
 		title:"KSM Control",

@@ -28,7 +28,7 @@ cat << CTAG
 										SGeneric: { title:"@BASENAME" }
 									}
 								},
-								exclude: [ "boostpulse", "sampling_rate_min", "cpufreq_limit_requests" ]
+								exclude: [ "boostpulse", "sampling_rate_min", "cpufreq_limit_requests", "target_loads", "timer_rate", "above_hispeed_delay", "go_hispeed_load" ]
 							},
 						}
 					},
