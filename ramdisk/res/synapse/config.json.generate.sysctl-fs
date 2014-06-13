@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-    name:FS-SYSCTL,
+    name:FS SYSCTL,
     elements:[
       	{ SPane:{
 		title:"inotify.max_queued_events",

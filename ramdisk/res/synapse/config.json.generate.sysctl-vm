@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-    name:VM-SYSCTL,
+    name:VM SYSCTL,
     elements:[
 	{ SPane:{
 		title:"block_dump",

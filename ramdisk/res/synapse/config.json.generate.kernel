@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-    name:I/O - MEMORY,
+    name:MEMORY,
     elements:[
     { SPane:{
 		title:"I/O Schedulers",

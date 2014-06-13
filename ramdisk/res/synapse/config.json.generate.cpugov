@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-	name:CPU GOV,
+	name:GOV,
 		elements:[
 			{ SPane:{
 				title:"CPU Governor",

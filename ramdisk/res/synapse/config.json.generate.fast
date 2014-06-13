@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-    name:FAST CHARGE,
+    name:BATTERY,
     elements:[
 	{ SPane:{
 		title:"Enable/Disable FastCharge"

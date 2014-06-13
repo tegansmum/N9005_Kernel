@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-    name:CPU - HARD LIMIT,
+    name:HARD LIMIT,
     elements:[
 	{ SLiveLabel:{
 		refresh:1000,

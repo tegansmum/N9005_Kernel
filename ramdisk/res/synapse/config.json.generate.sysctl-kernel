@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-    name:KERNEL-SYSCTL,
+    name:KERNEL SYSCTL,
     elements:[
 	{ SPane:{
 		title:"msgmax",

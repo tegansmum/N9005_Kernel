@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-    name:CPU - VOLT,
+    name:VOLT,
     elements:[
 	{ SPane:{
 		title:"CPU Voltage Control",

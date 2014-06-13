@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-    name:NET-SYSCTL,
+    name:NET SYSCTL,
     elements:[
       	{ SPane:{
 		title:"core.rmem_max",
