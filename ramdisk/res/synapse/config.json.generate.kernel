@@ -121,6 +121,48 @@ cat << CTAG
 		default:`cat /sys/kernel/mm/ksm/sleep_millisecs`,
 		action:"generic /sys/kernel/mm/ksm/sleep_millisecs"
 	}},
+	{ STitleBar:{
+		title:"Virtual Memory"
+	}},
+    	{ SSeekBar:{
+        	title:"dirty_background_ratio",
+        	description:" Dirty background memory buffer, more you set, more memory will be used for write buffer for background operations, buffer is released on need to free RAM. Default is 5.",
+        	min:0,
+		max:100, 
+		unit:" %", 
+		step:5,
+        	default:`cat /proc/sys/vm/dirty_background_ratio`,
+       		action:"generic /proc/sys/vm/dirty_background_ratio",
+    	}},
+	{ SSeekBar:{
+        	title:"dirty_ratio",
+        	description:" Dirty real time memory buffer, more you set, more memory will be used for write buffer for real time operations, buffer is released on need to free RAM. Default is 20.",
+        	min:0,
+		max:100,
+		unit:" %",
+		step:5,
+       	 	default:`cat /proc/sys/vm/dirty_ratio`,
+        	action:"generic /proc/sys/vm/dirty_ratio",
+    	}},
+	{ SSeekBar:{
+		title:"swappiness",
+		description:" A low value means the kernel will try to avoid swapping as much as possible where a higher value instead will make the kernel aggressively try to use swap space. Default is 60.",
+		max:100,
+		min:0,
+		step:10,
+		default:`cat /proc/sys/vm/swappiness`,
+		action:"generic /proc/sys/vm/swappiness",
+	}},
+    	{ SSeekBar:{
+		title:"vfs_cache_pressure",
+        	description:" Value used to control the tendency of the kernel to reclaim the memory which is used for caching of directory and inode objects. Default is 100.",
+		unit:" %",
+		step:1,
+		min:0,
+		max:150,
+		default:`cat /proc/sys/vm/vfs_cache_pressure`,
+		action:"generic /proc/sys/vm/vfs_cache_pressure"
+    	}},
     ]
 }
 CTAG
