@@ -44,6 +44,15 @@ cat << CTAG
                 action:"generic /sys/module/simple_gpu_algorithm/parameters/simple_gpu_activate"
         }},
 	{ SSeekBar:{
+		title:"Laziness",
+		description:" Adjusts the number of times the governor skips ramp down requests. Higher = better performance (more battery drain). Default is 4.",
+		min:0,
+		max:10,
+		step:1,
+		default:`cat /sys/module/simple_gpu_algorithm/parameters/simple_laziness`,
+		action:"generic /sys/module/simple_gpu_algorithm/parameters/simple_laziness",
+	}},
+	{ SSeekBar:{
 		title:"Ramp up threshold",
 		description:" Higher value is less agressive. Default is an agressive 5000.",
 		max:10000, 
