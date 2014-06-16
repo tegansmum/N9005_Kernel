@@ -1,0 +1,245 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:SYSCTL,
+    elements:[
+	{ STitleBar:{
+		title:"FS SYSCTL"
+	}},
+	{ SSeekBar:{
+		title:"inotify.max_queued_events",
+		description:" Events in excess of this limit are dropped, but an IN_Q_OVERFLOW event is always generated. Default is 16384.",
+		max:32768,
+		min:8192,
+		step:1024,
+		default:`cat /proc/sys/fs/inotify/max_queued_events`,
+		action:"generic /proc/sys/fs/inotify/max_queued_events",
+	}},
+	{ SSeekBar:{
+		title:"inotify.max_user_instances",
+		description:" This specifies an upper limit on the number of inotify instances that can be created per real user ID. Default is 128.",
+		max:1024,
+		min:64,
+		step:64,
+		default:`cat /proc/sys/fs/inotify/max_user_instances`,
+		action:"generic /proc/sys/fs/inotify/max_user_instances",
+	}},
+	{ SSeekBar:{
+		title:"inotify.max_user_watches",
+		description:" This specifies an upper limit on the number of watches instances that can be created per real user ID. Default is 8192.",
+		max:16384,
+		min:1024,
+		step:1024,
+		default:`cat /proc/sys/fs/inotify/max_user_watches`,
+		action:"generic /proc/sys/fs/inotify/max_user_watches",
+	}},
+	{ SSeekBar:{
+		title:"lease-break-time",
+		description:" This specifies the grace period the kernel grants to a process holding a file lease after it has sent a signal to that process notifying it that another process is waiting to open the file. Default is 45.",
+		max:100,
+		min:1,
+		step:1,
+		unit:" s",
+		default:`cat /proc/sys/fs/lease-break-time`,
+		action:"generic /proc/sys/fs/lease-break-time",
+	}},
+	{ SSeekBar:{
+		title:"nr_open",
+		description:" The maximum number of file handles a process can allocate. Default is 1048576.",
+		max:1048576,
+		min:16384,
+		step:16384,
+		default:`cat /proc/sys/fs/nr_open`,
+		action:"generic /proc/sys/fs/nr_open",
+	}},
+	{ STitleBar:{
+		title:"KERNEL SYSCTL"
+	}},
+	{ SSeekBar:{
+		title:"msgmax",
+		description:" Defines a system-wide limit specifying the maximum number of bytes in a single message written on a message queque. Default is 8192.",
+		max:524288,
+		min:8192,
+		step:8192,
+		default:`cat /proc/sys/kernel/msgmax`,
+		action:"generic /proc/sys/kernel/msgmax",
+	}},
+	{ SSeekBar:{
+		title:"msgmni",
+		description:" Defines a system-wide limit specifying the minimum number of bytes in a single message written on a message queque. Default is 1007.",
+		default:`cat /proc/sys/kernel/msgmni`,
+		action:"generic /proc/sys/kernel/msgmni",
+		values:[512, 1007, 1024, 2048, 3008, 3072, 4096, 5120, 6144, 7168, 8192,]
+	}},
+	{ SSeekBar:{
+		title:"panic",
+		description:" Set to zero to have the kernel loop on a panic or auto-reboot after this number of seconds. Default is 5.",
+		max:30,
+		min:0,
+		step:1,
+		unit:" s",
+		default:`cat /proc/sys/kernel/panic`,
+		action:"generic /proc/sys/kernel/panic",
+	}},
+	{ SCheckBox:{
+		description:" Disable to have the kernel continue operations after a software failure. Default is Enabled.",
+		label:"Enable or Disable panic_on_oops",
+		default:`cat /proc/sys/kernel/panic_on_oops`,
+		action:"generic /proc/sys/kernel/panic_on_oops",
+    	}},
+	{ SSeekBar:{
+		title:"randomize_va_space",
+		description:" Disabling (0) virtual address randomisation may improve GUI responsiveness. Default is 0.",
+		max:2,
+		min:0,
+		step:1,
+		default:`cat /proc/sys/kernel/randomize_va_space`,
+		action:"generic /proc/sys/kernel/randomize_va_space"
+	}},
+	{ SCheckBox:{
+		description:" Enable to have a child process scheduled next after being launched by its parent. Default is Disabled.",
+                label:"Enable or Disable sched_child_runs_first",
+                default:`cat /proc/sys/kernel/sched_child_runs_first`,
+                action:"generic /proc/sys/kernel/sched_child_runs_first"
+        }},
+	{ SSeekBar:{
+		title:"sched_rt_period_us",
+		description:" Real-Time group scheduling: The scheduling period that is equivalent to 100% CPU bandwidth. Default is 1000000.",
+		max:2000000,
+		min:10000,
+		step:10000,
+		unit:" us",
+		default:`cat /proc/sys/kernel/sched_rt_period_us`,
+		action:"generic /proc/sys/kernel/sched_rt_period_us"
+	}},
+	{ SSeekBar:{
+		title:"sched_rt_runtime_us",
+		description:" Real-Time group scheduling: A global limit on how much time realtime scheduling may use.  Even without CONFIG_RT_GROUP_SCHED enabled, this will limit time reserved to realtime processes. With CONFIG_RT_GROUP_SCHED it signifies the total bandwidth available to all realtime groups. Default is 950000.",
+		max:2000000,
+		min:10000,
+		step:10000,
+		unit:" us",
+		default:`cat /proc/sys/kernel/sched_rt_runtime_us`,
+		action:"generic /proc/sys/kernel/sched_rt_runtime_us"
+	}},
+	{ SSeekBar:{
+		title:"shmall",
+		description:" Maximum shared memory pages system wide. Default is 2097152.",
+		default:`cat /proc/sys/kernel/shmall`,
+		action:"generic /proc/sys/kernel/shmall",
+		values:[262144, 524288, 786432, 1048576, 1310720, 1572864, 1835008, 2097152,]
+	}},
+	{ SSeekBar:{
+		title:"shmmax",
+		description:" Maximum shared memory pages system wide. Default is 33554432.",
+		max:268435456,
+		min:16777216,
+		step:2097152,
+		default:`cat /proc/sys/kernel/shmmax`,
+		action:"generic /proc/sys/kernel/shmmax",
+	}},
+	{ SSeekBar:{
+		title:"shmmni",
+		description:" Specifies the system-wide maximum number of shared memory segments that can be created. Default is 4096.",
+		max:16384,
+		min:1024,
+		step:1024,
+		default:`cat /proc/sys/kernel/shmmni`,
+		action:"generic /proc/sys/kernel/shmmni",
+	}},
+	{ STitleBar:{
+		title:"NET SYSCTL"
+	}},
+	{ SSeekBar:{
+		title:"core.rmem_max",
+		description:" Maximum amount of memory allowed for automatically tuned receive buffers over TCP. Default is 2097152.",
+		max:4194304,
+		min:524288,
+		step:524288,
+		default:`cat /proc/sys/net/core/rmem_max`,
+		action:"generic /proc/sys/net/core/rmem_max",
+	}},
+	{ SSeekBar:{
+		title:"core.wmem_max",
+		description:" Maximum amount of memory allowed for automatically tuned send buffers over TCP. Default is 2097152.",
+		max:4194304,
+		min:524288,
+		step:524288,
+		default:`cat /proc/sys/net/core/wmem_max`,
+		action:"generic /proc/sys/net/core/wmem_max",
+	}},
+	{ SCheckBox:{
+		description:" Enable fast recycling TIME-WAIT sockets. Default is Disabled.",
+                label:"Enable or Disable tcp_tw_recycle",
+                default:`cat /proc/sys/net/ipv4/tcp_tw_recycle`,
+                action:"generic /proc/sys/net/ipv4/tcp_tw_recycle"
+        }},
+	{ STitleBar:{
+		title:"VM SYSCTL"
+	}},
+	{ SCheckBox:{
+		description:" Controls block I/O debugging. Default is Disabled.",
+                label:"Enable or Disable block_dump",
+                default:`cat /proc/sys/vm/block_dump`,
+                action:"generic /proc/sys/vm/block_dump",
+        }},
+	{ SSeekBar:{
+		title:"dirty_expire_centisecs.",
+		description:" Time after which dirty data is old enough to be eligible for writout by the pdflush daemons. Default is 200.",
+		max:2000,
+		min:100,
+		step:100,
+		default:`cat /proc/sys/vm/dirty_expire_centisecs`,
+		action:"generic /proc/sys/vm/dirty_expire_centisecs",
+	}},
+	{ SSeekBar:{
+		title:"dirty_writeback_centisecs.",
+		description:" Time interval between wakeups of the pdflush writeback daemons which write old data out to disk. Default is 500.",
+		max:3000,
+		min:100,
+		step:100,
+		default:`cat /proc/sys/vm/dirty_writeback_centisecs`,
+		action:"generic /proc/sys/vm/dirty_writeback_centisecs",
+	}},
+	{ SSeekBar:{
+        	title:"min_free_kbytes",
+        	description:" Value used to force the Linux VM to keep a minimum number of kilobytes free. Default is 3008.",
+		unit:" KB",
+       	 	default:`cat /proc/sys/vm/min_free_kbytes`,
+        	action:"generic /proc/sys/vm/min_free_kbytes",
+		values:[1024, 2048, 3008, 3072, 4096, 5120, 6144, 7168, 8192, 9216, 10240, 11264, 12288, 13312, 14336, 15360, 16384,]
+    	}},
+	{ SSeekBar:{
+        	title:"min_free_order_shift",
+        	description:" The higher the value, the more frequent unused objects will be released, freeing memory. Default is 4.",
+        	min:1,
+		max:5,
+		step:1,
+       	 	default:`cat /proc/sys/vm/min_free_order_shift`,
+        	action:"generic /proc/sys/vm/min_free_order_shift",
+    	}},
+	{ SCheckBox:{
+		description:" Value used to enable or disable killing the OOM-triggering task out-of-memory situations. Default is Disabled.",
+                label:"Enable or Disable oom_kill_allocating_task",
+                default:`cat /proc/sys/vm/oom_kill_allocating_task`,
+                action:"generic /proc/sys/vm/oom_kill_allocating_task",
+        }},
+	{ SSeekBar:{
+		title:"page-cluster",
+		description:" Number of pages which are written to swap in a single attempt. Default is 3.",
+		max:8,
+		min:0,
+		step:1,
+		default:`cat /proc/sys/vm/page-cluster`,
+		action:"generic /proc/sys/vm/page-cluster",
+	}},
+	{ SCheckBox:{
+		description:" If enabled, the kernel panics when out-of-memory happens. If disabled, the kernel will kill some rogue processes, by calling oom_kill(). Default is Disabled.",
+                label:"Enable or Disable panic_on_oom",
+                default:`cat /proc/sys/vm/panic_on_oom`,
+                action:"generic /proc/sys/vm/panic_on_oom",
+        }},
+    ]
+}
+CTAG
