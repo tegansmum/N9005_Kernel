@@ -18,6 +18,7 @@ cat << CTAG
 		`. /res/synapse/config.json.generate.advanced`
 		`. /res/synapse/config.json.generate.network`
 		`. /res/synapse/config.json.generate.sysctl`
+		`. /res/synapse/config.json.generate.storage`
 		`. /res/synapse/config.json.generate.reboot`
 		`. /res/synapse/config.json.generate.logs`
 		`. /res/synapse/config.json.generate.info`

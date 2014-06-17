@@ -1,0 +1,54 @@
+# By UpInTheAir for SkyHigh kernels
+
+case $1 in
+ums_mode)
+  P=/res/synapse/SkyHigh/mass_storage
+  if [ ! -z $2 ]; then
+  if [ $2 == Default ]; then
+    echo 0 > $P
+	echo "1" > /sys/devices/virtual/android_usb/android0/f_mass_storage/lun/cdrom;
+  elif [ $2 == MTP ]; then
+    echo 1 > $P
+	echo "1" > /sys/devices/virtual/android_usb/android0/f_mass_storage/lun/cdrom;
+	setprop sys.usb.config mtp,adb;
+	setprop persist.sys.usb.config mtp,adb;
+	setprop sys.usb.state mtp,adb;
+	echo "" > /sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file;
+	echo "0" > /sys/devices/virtual/android_usb/android0/enable;
+	echo "mtp,acm,adb" > /sys/class/android_usb/android0/functions;
+	echo "1" > /sys/devices/virtual/android_usb/android0/enable;
+	vold;
+  elif [ $2 == UMS ]; then
+    echo 2 > $P
+	echo "0" > /sys/devices/virtual/android_usb/android0/f_mass_storage/lun/cdrom;
+	setprop sys.usb.config mass_storage,adb;
+	setprop persist.sys.usb.config mass_storage,adb;
+	setprop sys.usb.state mass_storage,adb;
+	echo "0" > /sys/devices/virtual/android_usb/android0/enable;
+	echo "mass_storage,adb" > /sys/class/android_usb/android0/functions;
+	echo "/dev/block/vold/179:64" > /sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file;
+	echo "1" > /sys/devices/virtual/android_usb/android0/enable;
+  elif [ $2 == PTP ]; then
+    echo 3 > $P
+	echo "0" > /sys/devices/virtual/android_usb/android0/f_mass_storage/lun/cdrom;
+	setprop sys.usb.config ptp,adb;
+	setprop persist.sys.usb.config ptp,adb;
+	setprop sys.usb.state ptp,adb;
+	echo "0" > /sys/devices/virtual/android_usb/android0/enable;
+	echo "ptp,adb" > /sys/class/android_usb/android0/functions;
+	echo "" > /sys/devices/virtual/android_usb/android0/f_mass_storage/lun/file;
+	echo "1" > /sys/devices/virtual/android_usb/android0/enable;
+	vold;
+  fi; fi
+  copy=`cat $P`
+  if [ $copy == 0 ]; then
+    echo Default
+  elif [ $copy == 1 ]; then
+    echo MTP
+  elif [ $copy == 2 ]; then
+    echo UMS
+  elif [ $copy == 3 ]; then
+    echo PTP
+  fi
+  ;;
+esac

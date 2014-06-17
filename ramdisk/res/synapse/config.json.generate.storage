@@ -1,0 +1,47 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:STORAGE,
+    elements:[
+	{ SPane:{
+		title:"Storage Mode"
+	}},
+	{ SDescription:{
+		description:" ** WARNING **  When exiting UMS_Mode, be sure to EJECT your device from PC BEFORE re-enabling MTP_Mode or disconnecting ! This will help prevent any data loss or corruption."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SDescription:{
+		description:" < Default >  Default Mode does NOTHING, so setting & applying it will allow MTP Mode on boot."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SDescription:{
+		description:" < MTP >  Media Transfer Protocol Mode allows you to mount both device internal & external storage to transfer files to PC."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SDescription:{
+		description:" < UMS >  USB Mass Storage Mode allows you to mount only the external storage as a disk for faster file transfer to PC. You require a supported PC OS with appropriate USB drivers installed."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SDescription:{
+		description:" <  PTP  >  Camera Mode allows you to mount both device internal & external storage to transfer photos to PC using camera software or files that MTP does not support."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SOptionList:{
+		default:`echo $(/res/synapse/actions/storage ums_mode)`,
+		action:"storage ums_mode",
+		values:[Default, MTP, UMS, PTP,]
+	}},
+    ]
+}
+CTAG
