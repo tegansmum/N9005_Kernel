@@ -43,6 +43,15 @@ cat << CTAG
 		action:"network dns",
 		values:[Disabled, Google, OpenDNS, Comodo, Level3, Norton_DNS, Smart_Viper,]
 	}},
+	{ SPane:{
+		title:"GPS Region",
+		description:" Select GPS-Time-Zone for faster GPS lock! Use your region! A backup is automatically generated as /system/etc/gps.conf.bak, so by selecting Default will revert to original gps.conf."
+	}},
+	{ SOptionList:{
+		default:`echo $(/res/synapse/actions/network gps_zone)`,
+		action:"network gps_zone",
+		values:[Default, Asia, Europe, Oceania, North_America, South_America, Africa,]
+	}},
     ]
 }
 CTAG
