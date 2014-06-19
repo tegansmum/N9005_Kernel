@@ -62,6 +62,15 @@ cat << CTAG
 			echo $SMCPS`
 		}
 	}},
+	{ SPane:{
+		title:"Gentle Fair Sleepers",
+		description:" Sleeper Fairness is a concept used by CFS which treat sleeping/waiting tasks as if they were in a run queue. This implies tasks which spend most of the time waiting for an user input and such will get a fair share of CPU when they need it. Disabling Gentle Fair Sleepers could improve UI responsiveness. Default is Disabled."
+	}},
+	{ SCheckBox:{
+		label:"Enable or Disable Gentle Fair Sleepers",
+		default:`cat /sys/kernel/sched/gentle_fair_sleepers`,
+		action:"generic /sys/kernel/sched/gentle_fair_sleepers"
+	}},
     ]
 }
 CTAG
