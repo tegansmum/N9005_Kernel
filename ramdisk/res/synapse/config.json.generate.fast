@@ -43,12 +43,26 @@ cat << CTAG
 		default:`cat /sys/kernel/fast_charge/failsafe`,
 		action:"generic /sys/kernel/fast_charge/failsafe"
 	}},
-	{ SPane:{
-		title:""
+	{ SDescription:{
+		description:" "
 	}},
 	{ SButton:{
 		label:"Fast Charge Info",
 		action:"show fast"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SPane:{
+		title:"Battery Scaling Calibration",
+		description:" If you are having incorrect battery SCALING issues, this will reset your device battery % to scale correctly to the approximate available mV. Give it a few hours after you reset the gauge. It may still show you funny values for that period, then the battery percentage should be fine after a full charge cycle."
+	}},
+	{ SButton:{
+		label:"Reset Fuel-Gauge Chip Now",
+		action:"fuel-gauge fuel-gauge"
+	}},
+	{ SDescription:{
+		description:" "
 	}},
 	{ SPane:{
 		title:"Battery Info"
