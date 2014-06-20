@@ -30,6 +30,56 @@ cat << CTAG
 	done
 `
       { SPane:{
+		title:"LMK Whitelist",
+		description:" Allows certain apps to be exempt from being killed until absolutely necessary to avoid out-of-memory (OOM)."
+      }},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SCheckBox:{
+                label:"Do-Not-Kill System Processes List",
+                default:`cat /sys/module/lowmemorykiller/parameters/donotkill_sysproc`,
+                action:"generic /sys/module/lowmemorykiller/parameters/donotkill_sysproc"
+        }},
+	{ SOptionList:{
+		title:"Exempt System Processes",
+		action:"whitelist set sys",
+		default:`/res/synapse/actions/whitelist set sys`,
+		values:[
+`
+			for SYSPROC in \`/res/synapse/actions/whitelist list sys\`; do
+			  echo "\"$SYSPROC\","
+			done
+`
+		]
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SCheckBox:{
+                label:"Do-Not-Kill User Processes List",
+                default:`cat /sys/module/lowmemorykiller/parameters/donotkill_proc`,
+                action:"generic /sys/module/lowmemorykiller/parameters/donotkill_proc"
+        }},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SOptionList:{
+		title:"Exempt User Processes",
+		action:"whitelist set user",
+		default:`/res/synapse/actions/whitelist set user`,
+ 		values:[
+`
+			for PROC in \`/res/synapse/actions/whitelist list user\`; do
+			  echo "\"$PROC\","
+			done
+`
+		]
+	}},
+      { SDescription:{
+        description:" The process lists above are view only. To add processes, check the Synapse sdcard folder for the parsed files and add one process name per line. Lists updated on reboot.",
+      }},
+      { SPane:{
 		title:"Kernel Entropy"
       }},
 	{ SLiveLabel:{
