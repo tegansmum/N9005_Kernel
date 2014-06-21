@@ -28,7 +28,6 @@ on early-init
     write /sys/kernel/dyn_fsync/Dyn_fsync_active 1
     write /sys/module/intelli_plug/parameters/intelli_plug_active 0
     write /sys/kernel/cpufreq_hardlimit/userspace_dvfs_lock 1
-    write /sys/kernel/mm/uksm/run 0
     write /sys/kernel/sched/gentle_fair_sleepers 0
 
     # Set init and its forked children's oom_adj.
