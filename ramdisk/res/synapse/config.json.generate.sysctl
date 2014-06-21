@@ -194,15 +194,6 @@ cat << CTAG
 		action:"generic /proc/sys/vm/dirty_expire_centisecs",
 	}},
 	{ SSeekBar:{
-		title:"dirty_writeback_centisecs.",
-		description:" Time interval between wakeups of the pdflush writeback daemons which write old data out to disk. Default is 500.",
-		max:3000,
-		min:100,
-		step:100,
-		default:`cat /proc/sys/vm/dirty_writeback_centisecs`,
-		action:"generic /proc/sys/vm/dirty_writeback_centisecs",
-	}},
-	{ SSeekBar:{
         	title:"min_free_kbytes",
         	description:" Value used to force the Linux VM to keep a minimum number of kilobytes free. Default is 3008.",
 		unit:" KB",

@@ -130,6 +130,47 @@ cat << CTAG
        	 	default:`cat /sys/kernel/mm/uksm/max_cpu_percentage`,
 		action:"generic /sys/kernel/mm/uksm/max_cpu_percentage"
 	}},
+	{ SPane:{
+		title:"Dynamic Dirty Page Writeback"
+	}},
+	{ SDescription:{
+		description:" Allows to dynamically manage the dirty page writebacks with two different intervals, one when the screen is on and another when the screen is off."
+	}},
+	{ SDescription:{
+		description:" A higher interval we have better performance and less battery consumption, with a very low risk of data loss. Disabling will set a fixed stock 500 for both screen on & off."
+	}},
+	{ SDescription:{
+		description:" Default is Enabled."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SCheckBox:{
+		label:"Enable or Disable Dynamic Dirty Page Writeback",
+       	 	default:`cat /proc/sys/vm/dynamic_dirty_writeback`,
+		action:"generic /proc/sys/vm/dynamic_dirty_writeback"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SSeekBar:{
+		title:"Dirty Writeback Active",
+		description:" Time interval between wakeups of the pdflush writeback daemons which write old data out to disk whilst SCREEN is ON. Default is 1500.",
+		max:5000,
+		min:500,
+		step:500,
+		default:`cat /proc/sys/vm/dirty_writeback_active_centisecs`,
+		action:"generic /proc/sys/vm/dirty_writeback_active_centisecs",
+	}},
+	{ SSeekBar:{
+		title:"Dirty Writeback Suspend",
+		description:" Time interval between wakeups of the pdflush writeback daemons which write old data out to disk whilst SCREEN is OFF. Default is 500.",
+		max:1000,
+		min:100,
+		step:100,
+		default:`cat /proc/sys/vm/dirty_writeback_suspend_centisecs`,
+		action:"generic /proc/sys/vm/dirty_writeback_suspend_centisecs",
+	}},
 	{ STitleBar:{
 		title:"Virtual Memory"
 	}},
