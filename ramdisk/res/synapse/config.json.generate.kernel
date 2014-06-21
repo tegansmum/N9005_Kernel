@@ -162,9 +162,15 @@ cat << CTAG
 		default:`cat /proc/sys/vm/swappiness`,
 		action:"generic /proc/sys/vm/swappiness",
 	}},
+	{ SPane:{
+		title:"Adaptive VFS Cache Pressure on Suspend / Resume",
+		description:" Value used to control the tendency of the kernel to reclaim the memory which is used for caching of directory and inode objects when screen is ON (Default is 100) and screen OFF (fixed 20)."
+	}},
+	{ SDescription:{
+		description:" "
+	}},
     	{ SSeekBar:{
 		title:"vfs_cache_pressure",
-        	description:" Value used to control the tendency of the kernel to reclaim the memory which is used for caching of directory and inode objects. Default is 100.",
 		unit:" %",
 		step:1,
 		min:0,
