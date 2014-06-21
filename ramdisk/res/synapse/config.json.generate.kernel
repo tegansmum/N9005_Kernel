@@ -95,40 +95,37 @@ cat << CTAG
 			exclude: [ "weights" ]
 		}},
 	{ SPane:{
-		title:"Ultra Kernel Samepage Merging",
-		description:" Enabling Ultra Kernel SamePage Merging (UKSM) will merge some memory for slight performance increase, but need a small amount of cpu-power + battery. Default is OFF."
+		title:"KSM Control",
+		description:" Enabling Kernel SamePage Merging (KSM) will merge some memory > possible slight performance bump, but need cpu-power + battery. Default is OFF."
+	}},
+	{ SDescription:{
+		description:" "
 	}},
 	{ SCheckBox:{
-		label:"Enable or Disable UKSM",
-       	 	default:`cat /sys/kernel/mm/uksm/run`,
-		action:"generic /sys/kernel/mm/uksm/run"
+		label:"Enable or Disable KSM",
+		default:`cat /sys/kernel/mm/ksm/run`,
+		action:"generic /sys/kernel/mm/ksm/run"
+    	}},
+	{ SDescription:{
+		description:" "
 	}},
 	{ SSeekBar:{
-		title:"Sleep",
-		description:" Set how long the daemon sleeps before it wakes up and starts scanning memory pages.",
-		unit:" ms",
-		step:50,
+		title:"Pages to Scan",
+		unit:" pages",
+		step:10,
 		min:0,
-		max:1000,
-       	 	default:`cat /sys/kernel/mm/uksm/sleep_millisecs`,
-		action:"generic /sys/kernel/mm/uksm/sleep_millisecs"
-	}},
-	{ SOptionList:{
-		title:"UKSM CPU Governor",
-		description:" Controls how aggressively the daemon uses CPU power. This sets a preset for the maximum CPU consumption below. full = scaling 10>99 %, medium = fixed 50 %, low = fixed 20 %, & quiet = fixed 10 %.",
-		default:`cat /sys/kernel/mm/uksm/cpu_governor | busybox awk 'NR>1{print $1}' RS=[ FS=]`,
-		action:"UKSM_gov /sys/kernel/mm/uksm/cpu_governor",
-		values:[`while read values; do busybox printf "%s, \n" $values | busybox tr -d '[]'; done < /sys/kernel/mm/uksm/cpu_governor`]
-	}},
+		max:500,
+		default:`cat /sys/kernel/mm/ksm/pages_to_scan`,
+		action:"generic /sys/kernel/mm/ksm/pages_to_scan"
+		}},
 	{ SSeekBar:{
-		title:"Max CPU Consumption",
-		description:" The maximum CPU consumption the daemon will use while scanning. Higher = better scanning (more battery drain). You must set the above governor to FULL to use CPU percentage scaling.",
-		unit:" %",
-		step:1,
-		min:10,
-		max:99,
-       	 	default:`cat /sys/kernel/mm/uksm/max_cpu_percentage`,
-		action:"generic /sys/kernel/mm/uksm/max_cpu_percentage"
+		title:"Scan Delay Interval",
+		unit:" ms",
+		step:10,
+		min:0,
+		max:500,
+		default:`cat /sys/kernel/mm/ksm/sleep_millisecs`,
+		action:"generic /sys/kernel/mm/ksm/sleep_millisecs"
 	}},
 	{ SPane:{
 		title:"Dynamic Dirty Page Writeback"
