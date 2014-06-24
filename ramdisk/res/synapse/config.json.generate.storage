@@ -2,7 +2,7 @@
 
 cat << CTAG
 {
-    name:STORAGE,
+    name:USB,
     elements:[
 	{ SPane:{
 		title:"Storage Mode"
@@ -41,6 +41,38 @@ cat << CTAG
 		default:`echo $(/res/synapse/actions/storage ums_mode)`,
 		action:"storage ums_mode",
 		values:[Default, MTP, UMS, PTP,]
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SPane:{
+		title:"USB Keyboard / Mouse"
+	}},
+	{ SDescription:{
+		description:" Enable or Disable USB HID Device driver to control PC with keyboard and mouse from phone!"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SDescription:{
+		description:" 1)  Ensure device USB debugging"
+	}},
+	{ SDescription:{
+		description:" 2)  Connect device to system via USB cable"
+	}},
+	{ SDescription:{
+		description:" 3)  Enable here in Synapse"
+	}},
+	{ SDescription:{
+		description:" 4)  Start USB KEYBOARD app (Download from Google Play)"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SOptionList:{
+		default:`echo $(/res/synapse/actions/usb usb_keyboard)`,
+		action:"usb usb_keyboard",
+		values:[Enabled, Disabled,]
 	}},
     ]
 }
