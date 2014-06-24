@@ -14,25 +14,25 @@ cat << CTAG
 		description:" "
 	}},
 	{ SDescription:{
-		description:" < Default >  Default Mode does NOTHING, so setting & applying it will allow MTP Mode on boot."
+		description:" [ Default ]  Default Mode does NOTHING, so setting & applying it will allow MTP Mode on boot."
 	}},
 	{ SDescription:{
 		description:" "
 	}},
 	{ SDescription:{
-		description:" < MTP >  Media Transfer Protocol Mode allows you to mount both device internal & external storage to transfer files to PC."
+		description:" [ MTP ]  Media Transfer Protocol Mode allows you to mount both device internal & external storage to transfer files to PC."
 	}},
 	{ SDescription:{
 		description:" "
 	}},
 	{ SDescription:{
-		description:" < UMS >  USB Mass Storage Mode allows you to mount only the external storage as a disk for faster file transfer to PC. You require a supported PC OS with appropriate USB drivers installed."
+		description:" [ UMS ]  USB Mass Storage Mode allows you to mount only the external storage as a disk for faster file transfer to PC. You require a supported PC OS with appropriate USB drivers installed."
 	}},
 	{ SDescription:{
 		description:" "
 	}},
 	{ SDescription:{
-		description:" <  PTP  >  Camera Mode allows you to mount both device internal & external storage to transfer photos to PC using camera software or files that MTP does not support."
+		description:" [ PTP ]  Camera Mode allows you to mount both device internal & external storage to transfer photos to PC using camera software or files that MTP does not support."
 	}},
 	{ SDescription:{
 		description:" "
