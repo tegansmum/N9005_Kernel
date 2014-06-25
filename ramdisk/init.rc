@@ -18,6 +18,7 @@ on early-init
     # Ensure some SkyHigh kernel boot defaults are set.
     write /sys/class/kgsl/kgsl-3d0/max_gpuclk 462400000
     write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 200000000
+    write /sys/block/mmcblk0/queue/scheduler bfq
     write /sys/block/mmcblk1/queue/scheduler bfq
     write /sys/block/mmcblk0/queue/read_ahead_kb 256
     write /sys/block/mmcblk1/queue/read_ahead_kb 128
@@ -789,8 +790,6 @@ on boot
     write /proc/sys/net/core/rmem_max  1048576
     write /proc/sys/net/core/wmem_max  2097152
 	
-	write /sys/block/mmcblk0/queue/scheduler noop
-
     class_start core
     class_start main
 
@@ -1219,7 +1218,6 @@ service createsystemfile /system/bin/createsystemfile
     oneshot
 
 on property:sys.boot_completed=1
-    write /sys/block/mmcblk0/queue/scheduler bfq
 
 # Call Post-init script
 service Post-init /sbin/custom.sh
