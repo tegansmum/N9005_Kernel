@@ -1,0 +1,49 @@
+#!/system/bin/sh
+
+cat << CTAG
+{
+    name:STATS,
+    elements:[
+	{ SPane:{
+		title:"Memory:"
+	}},
+	{ SLiveLabel:{
+		refresh:1000,
+		action:"live LiveMemory"
+	}},
+	{ SPane:{
+		title:"Up Time:"
+	}},
+	{ SLiveLabel:{
+		refresh:1500,
+		action:"live LiveUpTime"
+	}},
+	{ SPane:{
+		title:"Ununsed CPU Frequencies:"
+	}},
+	{ SLiveLabel:{
+		refresh:2500,
+		action:"live LiveUnUsed"
+	}},
+	{ SPane:{
+		title:"Battery Info"
+	}},
+	{ SLiveLabel:{
+		refresh:1000,
+		action:"live battstatus"
+	}},
+	{ SLiveLabel:{
+		refresh:1000,
+		action:"live battcapa"
+	}},
+	{ SLiveLabel:{
+		refresh:1000,
+		action:"live batttemp"
+	}},
+	{ SLiveLabel:{
+		refresh:9000,
+		action:"live batthealth"
+	}},
+    ]
+}
+CTAG

@@ -6,11 +6,11 @@ cat << CTAG
     elements:[
 	{ SLiveLabel:{
 		refresh:1000,
-		action:"show temp"
+		action:"live temp"
 	}},
 	{ SLiveLabel:{
 		refresh:1000,
-		action:"show freq"
+		action:"live LiveCPUFrequency"
 	}},	
 	{ SPane:{
 		title:"MAX CPU Frequency Settings"

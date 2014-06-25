@@ -69,19 +69,19 @@ cat << CTAG
 	}},
 	{ SLiveLabel:{
 		refresh:1000,
-		action:"show battstatus"
+		action:"live battstatus"
 	}},
 	{ SLiveLabel:{
 		refresh:1000,
-		action:"show battcapa"
+		action:"live battcapa"
 	}},
 	{ SLiveLabel:{
 		refresh:1000,
-		action:"show batttemp"
+		action:"live batttemp"
 	}},
 	{ SLiveLabel:{
 		refresh:9000,
-		action:"show batthealth"
+		action:"live batthealth"
 	}},
     ]
 }

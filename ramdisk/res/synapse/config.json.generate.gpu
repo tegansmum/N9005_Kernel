@@ -4,6 +4,10 @@ cat << CTAG
 {
     name:GPU,
     elements:[
+	{ SLiveLabel:{
+		refresh:1000,
+		action:"live gpu"
+	}},
 	{ SPane:{
 		title:"GPU Governor"
 	}},
@@ -60,13 +64,6 @@ cat << CTAG
 		step:1000,
 		default:`cat /sys/module/simple_gpu_algorithm/parameters/simple_ramp_threshold`,
 		action:"generic /sys/module/simple_gpu_algorithm/parameters/simple_ramp_threshold",
-	}},
-	{ SPane:{
-		title:""
-	}},
-	{ SLiveLabel:{
-		refresh:1000,
-		action:"show gpu"
 	}},
     ]
 }
