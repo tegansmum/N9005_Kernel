@@ -105,6 +105,7 @@ static struct msm_bus_paths bw_level_tbl[] __initdata = {
 	[6] = BW_MBPS(4912), /* At least 614 MHz on bus. */
 	[7] = BW_MBPS(6400), /* At least 800 MHz on bus. */
 	[8] = BW_MBPS(7448), /* At least 931 MHz on bus. */
+	[9] = BW_MBPS(8000), /* At least 1000 MHz on bus. */
 };
 
 static struct l2_level l2_freq_tbl[] __initdata = {
