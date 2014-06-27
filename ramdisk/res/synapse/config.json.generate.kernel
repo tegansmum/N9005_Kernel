@@ -127,6 +127,20 @@ cat << CTAG
 		default:`cat /sys/kernel/mm/ksm/sleep_millisecs`,
 		action:"generic /sys/kernel/mm/ksm/sleep_millisecs"
 	}},
+	{ SDescription:{
+		description:" "
+	}},
+	{ SDescription:{
+		description:" Enabling Deferred Timer will prevent the KSM thread waking up CPU to carry out KSM activities, thus gaining on battery while compromising slightly on memory that could have been saved."
+	}},
+	{ SCheckBox:{
+		label:"Enable or Disable Deferred Timer",
+       	 	default:`cat /sys/kernel/mm/ksm/deferred_timer`,
+		action:"generic /sys/kernel/mm/ksm/deferred_timer"
+	}},
+	{ SDescription:{
+		description:" "
+	}},
 	{ SPane:{
 		title:"Dynamic Dirty Page Writeback"
 	}},
