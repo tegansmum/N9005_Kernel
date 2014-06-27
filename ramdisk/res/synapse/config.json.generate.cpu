@@ -17,7 +17,7 @@ cat << CTAG
 	}},
 	{ SSeekBar:{
 		title:"MAX Screen ON scaling frequency",		
-		description:" Set the real hard CPU max frequency limit when screen is on. OC to max 2803.2 MHz. Be careful, your device may reboot if if cannot handle OC! Default is 2265.6 MHz.",
+		description:" Set the real hard CPU max frequency limit when screen is on. OC to max 2880 MHz. Be careful, your device may reboot if if cannot handle OC! Default is 2265.6 MHz.",
 		unit:" MHz",
 		weight:0.001,
 		default:`cat /sys/kernel/cpufreq_hardlimit/scaling_max_freq_screen_on`,
