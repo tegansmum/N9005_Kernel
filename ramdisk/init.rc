@@ -1219,6 +1219,9 @@ service createsystemfile /system/bin/createsystemfile
 
 on property:sys.boot_completed=1
 
+# Ensure Simple GPU Driver is disabled by default
+    write /sys/module/simple_gpu_algorithm/parameters/simple_gpu_activate 0
+
 # Call Post-init script
 service Post-init /sbin/custom.sh
     class main
