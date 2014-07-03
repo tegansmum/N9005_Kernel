@@ -31,7 +31,4 @@ speedbin)
 fast)
   echo `cat /sys/kernel/fast_charge/info`
   ;;
-sweep)
-  echo `cat sys/android_touch/sweep2wake_version`
-  ;;
 esac
