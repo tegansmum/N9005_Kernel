@@ -18,10 +18,7 @@ on early-init
     # Ensure some SkyHigh kernel boot defaults are set.
     write /sys/class/kgsl/kgsl-3d0/max_gpuclk 462400000
     write /sys/class/kgsl/kgsl-3d0/devfreq/min_freq 200000000
-    write /sys/block/mmcblk0/queue/scheduler bfq
-    write /sys/block/mmcblk1/queue/scheduler bfq
     write /sys/block/mmcblk0/queue/read_ahead_kb 256
-    write /sys/block/mmcblk1/queue/read_ahead_kb 128
     write /sys/module/cpu_boost/parameters/boost_ms 20
     write /sys/module/cpu_boost/parameters/input_boost_ms 40
     write /sys/module/cpu_boost/parameters/sync_threshold 1190400
@@ -790,6 +787,8 @@ on boot
     write /proc/sys/net/core/rmem_max  1048576
     write /proc/sys/net/core/wmem_max  2097152
 	
+	write /sys/block/mmcblk0/queue/scheduler noop
+
     class_start core
     class_start main
 
@@ -1218,6 +1217,11 @@ service createsystemfile /system/bin/createsystemfile
     oneshot
 
 on property:sys.boot_completed=1
+
+# Ensure post boot defaults are set for synapse
+    write /sys/block/mmcblk0/queue/scheduler bfq
+    write /sys/block/mmcblk1/queue/scheduler bfq
+    write /sys/block/mmcblk1/queue/read_ahead_kb 128
 
 # Ensure Simple GPU Driver is disabled by default
     write /sys/module/simple_gpu_algorithm/parameters/simple_gpu_activate 0
